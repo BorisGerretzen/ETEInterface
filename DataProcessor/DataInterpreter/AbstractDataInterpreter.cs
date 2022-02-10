@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DataProcessor {
-    public abstract class AbstractDataInterpreter {
+    internal abstract class AbstractDataInterpreter {
         protected readonly List<List<(double, double)>> _data;
 
         protected AbstractDataInterpreter(List<List<(double, double)>> data) {

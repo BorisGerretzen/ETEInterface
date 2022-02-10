@@ -8,7 +8,7 @@ using OfficeOpenXml;
 
 namespace DataProcessor
 {
-    public class DataWriter {
+    internal class DataWriter {
         private List<(string, List<double>)> _data;
         private List<string> _headers;
 

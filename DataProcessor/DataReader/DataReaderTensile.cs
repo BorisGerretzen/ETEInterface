@@ -4,7 +4,7 @@ using System.IO;
 using OfficeOpenXml;
 
 namespace DataProcessor {
-    public class DataReaderTensile : AbstractDataReader {
+    internal class DataReaderTensile : AbstractDataReader {
         public override List<List<(double, double)>> ReadData(string sheetName = "") {
             if (string.IsNullOrEmpty(sheetName) && string.IsNullOrEmpty(this.SheetName)) {
                 throw new ArgumentException("No sheetName passed to function, but there was also no sheetName found in object.");

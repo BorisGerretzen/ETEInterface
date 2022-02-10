@@ -7,7 +7,7 @@ using MoreLinq;
 using OfficeOpenXml;
 
 namespace DataProcessor {
-    public class DataInterpreterTensileStrain : AbstractDataInterpreter{
+    internal class DataInterpreterTensileStrain : AbstractDataInterpreter{
         private List<(double, double)> _peaks;
 
         public DataInterpreterTensileStrain(List<List<(double, double)>> data) : base(data) { }

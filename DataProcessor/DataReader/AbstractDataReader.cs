@@ -7,7 +7,7 @@ using OfficeOpenXml;
 
 namespace DataProcessor
 {
-    public abstract class AbstractDataReader {
+    internal abstract class AbstractDataReader {
         protected string FileName;
         protected string SheetName;
 
