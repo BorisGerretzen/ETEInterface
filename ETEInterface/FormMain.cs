@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataProcessor;
@@ -15,25 +16,50 @@ namespace ETEInterface {
     public partial class FormMain : Form {
         private string inputDirectory;
         private string outputFile;
+        private Thread worker;
 
         public FormMain() {
             InitializeComponent();
         }
 
-
+        private void ProgressUpdate(double amount) {
+            progressBar.Invoke((MethodInvoker)delegate {
+                progressBar.Value = (int)Math.Floor(amount * 100);
+            });
+        }
 
         private void btnExport_Click(object sender, EventArgs e) {
-            if (tabControl1.SelectedTab == tabTensile) {
-                DataPrepper.PrepTensile(inputDirectory, checkRecursive.Checked);
-                AbstractProcessor processor = new TensileProcessor("temp", radioSeparate.Checked);
-                processor.Process(outputFile);
-                Directory.Delete("temp", true);
-            } else if (tabControl1.SelectedTab == tabTear) {
-                DataPrepper.PrepTensile(inputDirectory, checkRecursive.Checked);
-                AbstractProcessor processor = new TearProcessor("temp", radioSeparate.Checked);
-                processor.Process(outputFile);
-                Directory.Delete("temp", true);
+            if (worker != null && worker.IsAlive) {
+                DialogResult dialogResult = MessageBox.Show("An export is already running, do you want to cancel it?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (dialogResult == DialogResult.Yes) {
+                    worker.Abort();
+                    Directory.Delete("temp", true);
+                }
+                else {
+                    return;
+                }
             }
+            if (tabControl1.SelectedTab == tabTensile) {
+                worker = new Thread(() => {
+                    DataPrepper.PrepTensile(inputDirectory, checkRecursive.Checked, ProgressUpdate);
+                    AbstractProcessor processor = new TensileProcessor("temp", radioSeparate.Checked);
+                    processor.Process(outputFile);
+                    Directory.Delete("temp", true);
+                    ProgressUpdate(1);
+                    MessageBox.Show("Export complete");
+                });
+            }
+            else if (tabControl1.SelectedTab == tabTear) {
+                worker = new Thread(() => {
+                    DataPrepper.PrepTensile(inputDirectory, checkRecursive.Checked, ProgressUpdate);
+                    AbstractProcessor processor = new TearProcessor("temp", radioSeparate.Checked);
+                    processor.Process(outputFile);
+                    Directory.Delete("temp", true);
+                    ProgressUpdate(1);
+                    MessageBox.Show("Export complete");
+                });
+            }
+            worker.Start();
         }
 
         private void btnSelectInput_Click(object sender, EventArgs e) {

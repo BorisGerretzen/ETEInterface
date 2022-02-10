@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ETEInterface
 {
@@ -24,15 +25,17 @@ namespace ETEInterface
             app.Quit();
         }
 
-        public static void PrepTensile(string inputDir, bool recursive) {
+        public static void PrepTensile(string inputDir, bool recursive, Action<double> progressUpdate) {
             Directory.CreateDirectory("temp");
             SearchOption so = recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
-
-            foreach (string file in Directory.GetFiles(inputDir, "*.xls", so))
+            var files = Directory.GetFiles(inputDir, "*.xls", so);
+            int idx = 1;
+            foreach (string file in files)
             {
+                progressUpdate(0.9*idx/files.Length);
                 Convert(file);
+                idx++;
             }
-
         }
     }
 }
