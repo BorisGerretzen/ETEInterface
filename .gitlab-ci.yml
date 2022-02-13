@@ -2,6 +2,7 @@ image: mono:latest
 
 stages:
     - build_debug
+    - test
     - build_release
     - release
 
@@ -12,6 +13,13 @@ build_debug:
     stage: build_debug
     script:
         - msbuild "ETEInterface.sln"
+
+test:
+    stage: test
+    needs:
+        - job: build_debug
+    script:
+        - VSTest.Console "TestDataProcessor/bin/Debug/TestDataProcessor.dll"
 
 build_release:
     stage: build_release
