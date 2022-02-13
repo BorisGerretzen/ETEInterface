@@ -5,4 +5,4 @@ before_script:
 
 build:
  script:
-    - xbuild  "ETEInterface.sln"
+    - msbuild  "ETEInterface.sln"
