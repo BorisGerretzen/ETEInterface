@@ -1,7 +1,6 @@
 image: mono:latest
 
 stages:
-    - build_debug
     - test
     - build_release
     - release
@@ -9,16 +8,10 @@ stages:
 before_script:
     - nuget restore -NonInteractive
 
-build_debug:
-    stage: build_debug
-    script:
-        - msbuild "ETEInterface.sln"
-
 test:
     stage: test
-    needs:
-        - job: build_debug
     script:
+        - msbuild "ETEInterface.sln"
         - mono packages/NUnit.ConsoleRunner.3.15.0/tools/nunit3-console.exe DataProcessor.Test/bin/Debug/DataProcessor.Test.dll
 
 build_release:
