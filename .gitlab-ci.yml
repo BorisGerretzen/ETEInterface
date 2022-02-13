@@ -4,5 +4,11 @@ before_script:
     - nuget restore -NonInteractive
 
 build:
- script:
-    - msbuild  "ETEInterface.sln"
+    artifacts:
+        paths:
+            - /*
+        untracked: false
+        expire_in: 30 days
+    script:
+    - msbuild  "ETEInterface.sln" /property:Configuration=Release
+    - ls
