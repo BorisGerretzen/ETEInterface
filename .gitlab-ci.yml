@@ -1,3 +1,5 @@
+image: mono:latest
+
 variables:
   PROJECT_NAME: "ETEInterface"
 before_script:
