@@ -64,6 +64,7 @@ namespace ETEInterface {
 
         private void btnSelectInput_Click(object sender, EventArgs e) {
             using (var fbd = new FolderBrowserDialog()) {
+                fbd.SelectedPath = Directory.GetCurrentDirectory();
                 DialogResult result = fbd.ShowDialog();
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath)) {
                     inputDirectory = fbd.SelectedPath;
@@ -75,7 +76,7 @@ namespace ETEInterface {
         private void btnSelectOutput_Click(object sender, EventArgs e) {
             if (radioSeparate.Checked) {
                 using (var sfd = new SaveFileDialog()) {
-                    sfd.Filter = "Excel file|*.xlsx";
+                    sfd.Filter = "Excel workbook|*.xlsx";
                     DialogResult result = sfd.ShowDialog();
                     if (result == DialogResult.OK) {
                         outputFile = sfd.FileName;
@@ -85,7 +86,7 @@ namespace ETEInterface {
             }
             else if (radioSheet.Checked) {
                 using (var ofd = new OpenFileDialog()) {
-                    ofd.Filter = "Excel file|*.xlsx";
+                    ofd.Filter = "Excel workbook|*.xlsx";
                     DialogResult result = ofd.ShowDialog();
                     if (result == DialogResult.OK) {
                         outputFile = ofd.FileName;

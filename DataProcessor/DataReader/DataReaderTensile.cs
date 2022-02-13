@@ -24,25 +24,23 @@ namespace DataProcessor {
                 int colCount = sheet.Dimension.End.Column;
                 int rowCount = sheet.Dimension.End.Row;
                 int firstRow = 4;
-                for (int row = firstRow; row <= rowCount; row++) {
-                    int currentSample = 0;
-                    for (int col = 1; col <= colCount; col+=2) {
-                        // Add list to returnList
-                        if (row == firstRow && currentSample+1 > returnList.Count) {
-                            returnList.Add(new List<(double, double)>());
-                        }
-
+                for (int col = 1; col <= colCount; col += 2)
+                {
+                    var newList = new List<(double, double)>();
+                    for (int row = firstRow; row <= rowCount; row++)
+                    {
                         // Try to get values
                         var xValue = sheet.Cells[row, col].Value;
                         var yValue = sheet.Cells[row, col + 1].Value;
-                        if (xValue == null || yValue == null) {
+                        if (xValue == null || yValue == null)
+                        {
                             break;
                         }
 
                         // Add to returnList
-                        returnList[currentSample].Add(((double)xValue, (double)yValue));
-                        currentSample++;
+                        newList.Add(((double)xValue, (double)yValue));
                     }
+                    returnList.Add(newList);
                 }
                 package.Dispose();
             }
