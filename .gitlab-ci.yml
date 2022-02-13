@@ -19,7 +19,7 @@ test:
     needs:
         - job: build_debug
     script:
-        - VSTest.Console "TestDataProcessor/bin/Debug/TestDataProcessor.dll"
+        - mstest "TestDataProcessor/bin/Debug/TestDataProcessor.dll"
 
 build_release:
     stage: build_release
