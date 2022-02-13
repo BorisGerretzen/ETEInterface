@@ -6,9 +6,8 @@ before_script:
 build:
     artifacts:
         paths:
-            - /*
+            - ETEInterface/bin/Release/*
         untracked: false
         expire_in: 30 days
     script:
     - msbuild  "ETEInterface.sln" /property:Configuration=Release
-    - ls
