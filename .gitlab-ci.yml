@@ -19,7 +19,7 @@ test:
     needs:
         - job: build_debug
     script:
-        - mstest "TestDataProcessor/bin/Debug/TestDataProcessor.dll"
+        - mono packages/NUnit.ConsoleRunner.3.6.0/tools/nunit3-console.exe DataProcessor.Test/bin/Debug/DataProcessor.Test.dll
 
 build_release:
     stage: build_release
