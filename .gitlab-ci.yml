@@ -1,13 +1,46 @@
 image: mono:latest
 
+stages:
+    - build
+    - release
+
 before_script:
     - nuget restore -NonInteractive
 
 build:
+    stage: build
     artifacts:
         paths:
             - ETEInterface/bin/Release/*
         untracked: false
+        reports:
+            dotenv: job.env
         expire_in: 30 days
     script:
-    - msbuild  "ETEInterface.sln" /property:Configuration=Release
+        - msbuild  "ETEInterface.sln" /property:Configuration=Release
+    after_script:
+        - echo "JOB_ID=$CI_JOB_ID" >> job.env
+
+
+release:
+    stage: release
+    image: registry.gitlab.com/gitlab-org/release-cli:latest
+    needs:
+        - job: build
+          artifacts: true
+    variables:
+        TAG: '$CI_COMMIT_SHA'
+    script:
+        - echo "Create Release $CI_COMMIT_TAG"
+        - echo $JOB_ID  
+    release:
+        name: 'Release $CI_COMMIT_TAG'
+        tag_name: '$CI_COMMIT_TAG'
+        ref: '$CI_COMMIT_TAG'
+        description: 'Release $CI_COMMIT_TAG'
+        assets:
+            links:
+                - name: "ETEInterface.zip"
+                  url: "https://gitlab.com/BorisGerretzen/ETE-Interface/-/jobs/${JOB_ID}/artifacts/download"
+    only:
+        - tags
