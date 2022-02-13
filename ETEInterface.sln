@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETEInterface", "ETEInterfac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProcessor", "DataProcessor\DataProcessor.csproj", "{F897C806-27F2-45B4-80F5-E8ED8117B0EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataProcessor", "TestDataProcessor\TestDataProcessor.csproj", "{C50D2C39-9629-44AC-8A38-8E386455BCBF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProcessor.Test", "DataProcessor.Test\DataProcessor.Test.csproj", "{C50D2C39-9629-44AC-8A38-8E386455BCBF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
