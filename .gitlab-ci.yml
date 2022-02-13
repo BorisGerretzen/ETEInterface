@@ -1,14 +1,20 @@
 image: mono:latest
 
 stages:
-    - build
+    - build_debug
+    - build_release
     - release
 
 before_script:
     - nuget restore -NonInteractive
 
-build:
-    stage: build
+build_debug:
+    stage: build_debug
+    script:
+        - msbuild "ETEInterface.sln"
+
+build_release:
+    stage: build_release
     artifacts:
         paths:
             - ETEInterface/bin/Release/*
@@ -20,13 +26,14 @@ build:
         - msbuild  "ETEInterface.sln" /property:Configuration=Release
     after_script:
         - echo "JOB_ID=$CI_JOB_ID" >> job.env
-
+    only:
+        - tags
 
 release:
     stage: release
     image: registry.gitlab.com/gitlab-org/release-cli:latest
     needs:
-        - job: build
+        - job: build_release
           artifacts: true
     variables:
         TAG: '$CI_COMMIT_SHA'
