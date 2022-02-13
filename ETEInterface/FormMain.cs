@@ -95,5 +95,10 @@ namespace ETEInterface {
                 }
             }
         }
+
+        private void linkEmail_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(linkEmail.Text);
+        }
     }
 }

@@ -21,7 +21,6 @@ namespace ETEInterface
             var wb = app.Workbooks.Open(file);
             wb.SaveAs(fname, Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook);
             wb.Close();
-            app.Quit();
         }
 
         public static void PrepTensile(string inputDir, bool recursive, Action<double> progressUpdate) {
@@ -36,6 +35,7 @@ namespace ETEInterface
                 Convert(file, app);
                 idx++;
             }
+            app.Quit();
         }
     }
 }

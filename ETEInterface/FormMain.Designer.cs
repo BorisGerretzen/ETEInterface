@@ -40,7 +40,9 @@
             this.btnSelectInput = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.checkRecursive = new System.Windows.Forms.CheckBox();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.btnExport = new System.Windows.Forms.Button();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabTensile = new System.Windows.Forms.TabPage();
@@ -59,8 +61,11 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.tabRebound = new System.Windows.Forms.TabPage();
+            this.tabHelp = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.linkEmail = new System.Windows.Forms.LinkLabel();
+            this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -68,6 +73,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabTensile.SuspendLayout();
@@ -76,7 +82,7 @@
             this.tabTear.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
+            this.tabHelp.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -110,7 +116,7 @@
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.96848F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.03152F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 389F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 391F));
             this.tableLayoutPanel3.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.groupBox2, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.groupBox5, 2, 0);
@@ -129,7 +135,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(133, 81);
+            this.panel1.Size = new System.Drawing.Size(132, 81);
             this.panel1.TabIndex = 0;
             // 
             // groupBox3
@@ -139,7 +145,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(133, 81);
+            this.groupBox3.Size = new System.Drawing.Size(132, 81);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Output";
@@ -149,10 +155,10 @@
             this.radioSheet.AutoSize = true;
             this.radioSheet.Location = new System.Drawing.Point(6, 42);
             this.radioSheet.Name = "radioSheet";
-            this.radioSheet.Size = new System.Drawing.Size(87, 17);
+            this.radioSheet.Size = new System.Drawing.Size(92, 17);
             this.radioSheet.TabIndex = 1;
             this.radioSheet.TabStop = true;
-            this.radioSheet.Text = "Add as sheet";
+            this.radioSheet.Text = "Add as sheets";
             this.radioSheet.UseVisualStyleBackColor = true;
             // 
             // radioSeparate
@@ -172,9 +178,9 @@
             this.groupBox2.Controls.Add(this.btnSelectOutput);
             this.groupBox2.Controls.Add(this.btnSelectInput);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(142, 3);
+            this.groupBox2.Location = new System.Drawing.Point(141, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(211, 81);
+            this.groupBox2.Size = new System.Drawing.Size(210, 81);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Files";
@@ -203,9 +209,9 @@
             // 
             this.groupBox5.Controls.Add(this.checkRecursive);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox5.Location = new System.Drawing.Point(359, 3);
+            this.groupBox5.Location = new System.Drawing.Point(357, 3);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(384, 81);
+            this.groupBox5.Size = new System.Drawing.Size(386, 81);
             this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Additional options";
@@ -220,16 +226,39 @@
             this.checkRecursive.Text = "Search input subdirectories";
             this.checkRecursive.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.btnExport, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.progressBar, 0, 1);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(761, 3);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75.47169F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.5283F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(151, 106);
+            this.tableLayoutPanel6.TabIndex = 3;
+            // 
             // btnExport
             // 
             this.btnExport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnExport.Location = new System.Drawing.Point(3, 3);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(145, 73);
+            this.btnExport.Size = new System.Drawing.Size(145, 74);
             this.btnExport.TabIndex = 3;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // progressBar
+            // 
+            this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.progressBar.Location = new System.Drawing.Point(3, 83);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(145, 20);
+            this.progressBar.TabIndex = 4;
             // 
             // tableLayoutPanel1
             // 
@@ -251,6 +280,8 @@
             // 
             this.tabControl1.Controls.Add(this.tabTensile);
             this.tabControl1.Controls.Add(this.tabTear);
+            this.tabControl1.Controls.Add(this.tabRebound);
+            this.tabControl1.Controls.Add(this.tabHelp);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
@@ -263,7 +294,6 @@
             this.tabTensile.Controls.Add(this.tableLayoutPanel4);
             this.tabTensile.Location = new System.Drawing.Point(4, 22);
             this.tabTensile.Name = "tabTensile";
-            this.tabTensile.Padding = new System.Windows.Forms.Padding(3);
             this.tabTensile.Size = new System.Drawing.Size(907, 149);
             this.tabTensile.TabIndex = 0;
             this.tabTensile.Text = "Tensile";
@@ -277,11 +307,12 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 568F));
             this.tableLayoutPanel4.Controls.Add(this.groupBox4, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(901, 143);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(907, 149);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // groupBox4
@@ -294,8 +325,8 @@
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(3, 3);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(91, 137);
-            this.groupBox4.TabIndex = 0;
+            this.groupBox4.Size = new System.Drawing.Size(92, 143);
+            this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Data selection";
             // 
@@ -364,7 +395,7 @@
             this.tableLayoutPanel5.ColumnCount = 3;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.12913F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.87087F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 567F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 568F));
             this.tableLayoutPanel5.Controls.Add(this.groupBox6, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
@@ -384,7 +415,7 @@
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox6.Location = new System.Drawing.Point(3, 3);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(93, 143);
+            this.groupBox6.Size = new System.Drawing.Size(92, 143);
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Data selection";
@@ -439,28 +470,57 @@
             this.checkBox5.Text = "Minimum";
             this.checkBox5.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel6
+            // tabRebound
             // 
-            this.tableLayoutPanel6.ColumnCount = 1;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Controls.Add(this.btnExport, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.progressBar, 0, 1);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(761, 3);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 2;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75.47169F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.5283F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(151, 106);
-            this.tableLayoutPanel6.TabIndex = 3;
+            this.tabRebound.Location = new System.Drawing.Point(4, 22);
+            this.tabRebound.Name = "tabRebound";
+            this.tabRebound.Size = new System.Drawing.Size(907, 149);
+            this.tabRebound.TabIndex = 2;
+            this.tabRebound.Text = "Rebound";
+            this.tabRebound.UseVisualStyleBackColor = true;
             // 
-            // progressBar
+            // tabHelp
             // 
-            this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBar.Location = new System.Drawing.Point(3, 82);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(145, 21);
-            this.progressBar.TabIndex = 4;
+            this.tabHelp.Controls.Add(this.label2);
+            this.tabHelp.Controls.Add(this.linkEmail);
+            this.tabHelp.Controls.Add(this.label1);
+            this.tabHelp.Location = new System.Drawing.Point(4, 22);
+            this.tabHelp.Name = "tabHelp";
+            this.tabHelp.Size = new System.Drawing.Size(907, 149);
+            this.tabHelp.TabIndex = 3;
+            this.tabHelp.Text = "Help";
+            this.tabHelp.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(439, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "If you need help or have a  feature suggestion, send an email to the following em" +
+    "ail address:";
+            // 
+            // linkEmail
+            // 
+            this.linkEmail.AutoSize = true;
+            this.linkEmail.Location = new System.Drawing.Point(6, 21);
+            this.linkEmail.Name = "linkEmail";
+            this.linkEmail.Size = new System.Drawing.Size(397, 13);
+            this.linkEmail.TabIndex = 1;
+            this.linkEmail.TabStop = true;
+            this.linkEmail.Text = "contact-project+borisgerretzen-ete-interface-33572193-issue-@incoming.gitlab.com";
+            this.linkEmail.Click += new System.EventHandler(this.linkEmail_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 44);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(370, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "The email address is automatically copied into your clipboard if you click on it." +
+    "";
             // 
             // FormMain
             // 
@@ -481,6 +541,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabTensile.ResumeLayout(false);
@@ -491,7 +552,8 @@
             this.tableLayoutPanel5.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tabHelp.ResumeLayout(false);
+            this.tabHelp.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -514,6 +576,10 @@
         private System.Windows.Forms.CheckBox checkRecursive;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabTensile;
+        private System.Windows.Forms.TabPage tabTear;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.CheckBox checkTensileErrorOver;
@@ -521,16 +587,17 @@
         private System.Windows.Forms.CheckBox checkTensileMax;
         private System.Windows.Forms.CheckBox checkTensileMean;
         private System.Windows.Forms.CheckBox checkTensileMin;
-        private System.Windows.Forms.TabPage tabTear;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.TabPage tabRebound;
+        private System.Windows.Forms.TabPage tabHelp;
+        private System.Windows.Forms.LinkLabel linkEmail;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
