@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OfficeOpenXml;
+﻿using OfficeOpenXml;
 
-namespace DataProcessor
+namespace DataProcessing
 {
     internal class DataWriter {
         private List<(string, List<double>)> _data;

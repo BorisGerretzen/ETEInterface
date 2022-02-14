@@ -1,9 +1,6 @@
-﻿using ExcelDataReader;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using OfficeOpenXml;
 
-namespace DataProcessor {
+namespace DataProcessing.DataReader {
     internal class DataReaderTensile : AbstractDataReader {
         public override List<List<(double, double)>> ReadData(string sheetName = "") {
             if (string.IsNullOrEmpty(sheetName) && string.IsNullOrEmpty(this.SheetName)) {
@@ -13,17 +10,6 @@ namespace DataProcessor {
             sheetName = string.IsNullOrEmpty(sheetName) ? this.SheetName : sheetName;
             List<List<(double, double)>> returnList = new List<List<(double, double)>>();
 
-            using (var stream = File.Open(FileName, FileMode.Open, FileAccess.Read)) {
-                using (var reader = ExcelReaderFactory.CreateReader(stream)) {
-                    do
-                    {
-                        while (reader.Read())
-                        {
-
-                        }
-                    } while (reader.NextResult());
-                }
-            }
             using (var package = new ExcelPackage(new FileInfo(this.FileName))) {
                 // Try to open sheet
                 var sheet = package.Workbook.Worksheets[sheetName];
@@ -59,6 +45,5 @@ namespace DataProcessor {
         }
 
         public DataReaderTensile(string fileName, string sheetName) : base(fileName, sheetName) { }
-        public DataReaderTensile(string fileName) : base(fileName) { }
     }
 }

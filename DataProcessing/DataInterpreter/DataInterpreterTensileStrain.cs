@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MoreLinq;
-using OfficeOpenXml;
+﻿using MoreLinq;
 
-namespace DataProcessor {
+namespace DataProcessing.DataInterpreter {
     internal class DataInterpreterTensileStrain : AbstractDataInterpreter{
-        private List<(double, double)> _peaks;
+        private List<(double, double)>? _peaks;
 
         public DataInterpreterTensileStrain(List<List<(double, double)>> data) : base(data) { }
 
@@ -32,7 +26,7 @@ namespace DataProcessor {
             };
         }
 
-        private List<(double, double)> GetPeaks() {
+        private List<(double, double)>? GetPeaks() {
             if (_peaks == null) {
                 _peaks = _data.Select(sample => sample.MaxBy(x => x.Item2).First()).ToList();
             }

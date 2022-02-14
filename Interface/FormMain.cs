@@ -9,15 +9,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DataProcessor;
-using DataProcessor.DataProcessor;
+using DataProcessing.DataProcessor;
 
 namespace Interface {
     public partial class FormMain : Form {
-        private string inputDirectory;
-        private string outputFile;
-        private Thread worker;
-
+        private string _inputDirectory = null!;
+        private string _outputFile = null!;
+        private Thread _worker = null!;
+        
         public FormMain() {
             InitializeComponent();
         }
@@ -29,10 +28,10 @@ namespace Interface {
         }
 
         private void btnExport_Click(object sender, EventArgs e) {
-            if (worker != null && worker.IsAlive) {
+            if (_worker != null && _worker.IsAlive) {
                 DialogResult dialogResult = MessageBox.Show("An export is already running, do you want to cancel it?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
                 if (dialogResult == DialogResult.Yes) {
-                    worker.Abort();
+                    _worker.Abort();
                     Directory.Delete("temp", true);
                 }
                 else {
@@ -40,26 +39,27 @@ namespace Interface {
                 }
             }
             if (tabControl1.SelectedTab == tabTensile) {
-                worker = new Thread(() => {
-                    DataPrepper.PrepTensile(inputDirectory, checkRecursive.Checked, ProgressUpdate);
+                _worker = new Thread(() => {
+                    DataPrepper.PrepTensile(_inputDirectory, checkRecursive.Checked, ProgressUpdate);
                     AbstractProcessor processor = new TensileProcessor("temp", radioSeparate.Checked);
-                    processor.Process(outputFile);
+                    processor.Process(_outputFile);
                     Directory.Delete("temp", true);
                     ProgressUpdate(1);
                     MessageBox.Show("Export complete");
                 });
+                _worker.Start();
             }
             else if (tabControl1.SelectedTab == tabTear) {
-                worker = new Thread(() => {
-                    DataPrepper.PrepTensile(inputDirectory, checkRecursive.Checked, ProgressUpdate);
+                _worker = new Thread(() => {
+                    DataPrepper.PrepTensile(_inputDirectory, checkRecursive.Checked, ProgressUpdate);
                     AbstractProcessor processor = new TearProcessor("temp", radioSeparate.Checked);
-                    processor.Process(outputFile);
+                    processor.Process(_outputFile);
                     Directory.Delete("temp", true);
                     ProgressUpdate(1);
                     MessageBox.Show("Export complete");
                 });
+                _worker.Start();
             }
-            worker.Start();
         }
 
         private void btnSelectInput_Click(object sender, EventArgs e) {
@@ -67,7 +67,7 @@ namespace Interface {
                 fbd.SelectedPath = Directory.GetCurrentDirectory();
                 DialogResult result = fbd.ShowDialog();
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath)) {
-                    inputDirectory = fbd.SelectedPath;
+                    _inputDirectory = fbd.SelectedPath;
                     btnSelectInput.Text = fbd.SelectedPath;
                 }
             }
@@ -79,7 +79,7 @@ namespace Interface {
                     sfd.Filter = "Excel workbook|*.xlsx";
                     DialogResult result = sfd.ShowDialog();
                     if (result == DialogResult.OK) {
-                        outputFile = sfd.FileName;
+                        _outputFile = sfd.FileName;
                         btnSelectOutput.Text = sfd.FileName;
                     }
                 }
@@ -89,7 +89,7 @@ namespace Interface {
                     ofd.Filter = "Excel workbook|*.xlsx";
                     DialogResult result = ofd.ShowDialog();
                     if (result == DialogResult.OK) {
-                        outputFile = ofd.FileName;
+                        _outputFile = ofd.FileName;
                         btnSelectOutput.Text = ofd.FileName;
                     }
                 }
