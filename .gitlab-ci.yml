@@ -1,4 +1,4 @@
-image: mono:latest
+image: mcr.microsoft.com/dotnet/sdk:6.0
 
 stages:
     - build_release
@@ -11,17 +11,15 @@ build_release:
     stage: build_release
     artifacts:
         paths:
-            - Interface/bin/Release/netcoreapp3.1/*
+            - publish/
         untracked: false
         reports:
             dotenv: job.env
         expire_in: 30 days
     script:
-        - msbuild  "ETEInterface.sln" /property:Configuration=Release
+        - dotnet publish -c Release -o ../publish Interface/Interface.csproj
     after_script:
         - echo "JOB_ID=$CI_JOB_ID" >> job.env
-    only:
-        - tags
 
 release:
     stage: release
