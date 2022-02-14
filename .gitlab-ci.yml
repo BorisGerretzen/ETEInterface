@@ -5,7 +5,7 @@ stages:
     - release
 
 before_script:
-    - nuget restore -NonInteractive
+    - dotnet nuget restore -NonInteractive
 
 build_release:
     stage: build_release
