@@ -1,4 +1,4 @@
-image: mcr.microsoft.com/windows:latest
+image: mcr.microsoft.com/windows:20H2
 
 stages:
     - build_release
