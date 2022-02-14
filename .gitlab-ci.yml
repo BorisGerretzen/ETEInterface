@@ -4,9 +4,6 @@ stages:
     - build_release
     - release
 
-before_script:
-    - dotnet nuget restore -NonInteractive
-
 build_release:
     stage: build_release
     artifacts:
