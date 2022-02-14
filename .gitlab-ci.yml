@@ -1,24 +1,17 @@
 image: mono:latest
 
 stages:
-    - test
     - build_release
     - release
 
 before_script:
     - nuget restore -NonInteractive
 
-test:
-    stage: test
-    script:
-        - msbuild "ETEInterface.sln"
-        - mono packages/NUnit.ConsoleRunner.3.15.0/tools/nunit3-console.exe DataProcessor.Test/bin/Debug/DataProcessor.Test.dll
-
 build_release:
     stage: build_release
     artifacts:
         paths:
-            - ETEInterface/bin/Release/*
+            - Interface/bin/Release/netcoreapp3.1/*
         untracked: false
         reports:
             dotenv: job.env
