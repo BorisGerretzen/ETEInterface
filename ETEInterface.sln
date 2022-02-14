@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProcessor", "DataProces
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProcessor.Test", "DataProcessor.Test\DataProcessor.Test.csproj", "{C50D2C39-9629-44AC-8A38-8E386455BCBF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interface", "Interface\Interface.csproj", "{08318973-1E41-4B50-A295-63FD7136B2BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProcessing", "DataProcessing\DataProcessing.csproj", "{2BDC5210-4335-4FAC-B939-22FAA90A44A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{C50D2C39-9629-44AC-8A38-8E386455BCBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C50D2C39-9629-44AC-8A38-8E386455BCBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C50D2C39-9629-44AC-8A38-8E386455BCBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08318973-1E41-4B50-A295-63FD7136B2BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08318973-1E41-4B50-A295-63FD7136B2BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08318973-1E41-4B50-A295-63FD7136B2BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08318973-1E41-4B50-A295-63FD7136B2BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BDC5210-4335-4FAC-B939-22FAA90A44A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BDC5210-4335-4FAC-B939-22FAA90A44A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BDC5210-4335-4FAC-B939-22FAA90A44A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BDC5210-4335-4FAC-B939-22FAA90A44A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
