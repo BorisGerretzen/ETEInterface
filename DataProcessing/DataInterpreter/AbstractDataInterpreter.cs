@@ -1,13 +1,13 @@
-﻿namespace DataProcessing.DataInterpreter {
-    internal abstract class AbstractDataInterpreter {
-        protected readonly List<List<(double, double)>> _data;
+﻿namespace DataProcessing.DataInterpreter; 
 
-        protected AbstractDataInterpreter(List<List<(double, double)>> data) {
-            _data = data;
-        }
+internal abstract class AbstractDataInterpreter {
+    protected readonly List<List<(double, double)>> _data;
 
-        public abstract List<string> GetHeaders();
-
-        public abstract List<double> GetData();
+    protected AbstractDataInterpreter(List<List<(double, double)>> data) {
+        _data = data;
     }
+
+    public abstract List<string> GetHeaders();
+
+    public abstract List<double> GetData();
 }

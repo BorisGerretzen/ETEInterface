@@ -1,15 +1,14 @@
-﻿namespace DataProcessing.DataProcessor
-{
-    public abstract class AbstractProcessor {
-        protected string Filter = null!;
-        protected readonly string Directory;
-        protected readonly bool Separate;
+﻿namespace DataProcessing.DataProcessor; 
 
-        protected AbstractProcessor(string directory, bool separate) {
-            Directory = directory;
-            Separate = separate;
-        }
+public abstract class AbstractProcessor {
+    protected string Filter = null!;
+    protected readonly string Directory;
+    protected readonly bool Separate;
 
-        public abstract void Process(string outputFile);
+    protected AbstractProcessor(string directory, bool separate) {
+        Directory = directory;
+        Separate = separate;
     }
+
+    public abstract void Process(string outputFile);
 }
