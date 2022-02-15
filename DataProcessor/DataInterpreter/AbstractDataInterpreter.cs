@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataProcessor {
+﻿namespace DataProcessor {
     internal abstract class AbstractDataInterpreter {
         protected readonly List<List<(double, double)>> _data;
 
