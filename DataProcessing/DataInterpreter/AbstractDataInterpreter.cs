@@ -7,7 +7,5 @@ internal abstract class AbstractDataInterpreter {
         _data = data;
     }
 
-    public abstract List<string> GetHeaders();
-
     public abstract List<double> GetData();
 }

@@ -8,19 +8,36 @@ public class TearProcessor : AbstractProcessor {
         Filter = "*.xlsx";
     }
 
+    public override List<string> GetHeaders()
+    {
+        return new List<string> {
+            "min",
+            "mean",
+            "max",
+            "error bottom",
+            "error top"
+        };
+    }
+
     public override void Process(string outputFile) {
         var dataStrain = new List<(string, List<double>)>();
-        var headers = new List<string>();
+        var removableColumns = RemoveFromResults();
 
         foreach (var file in System.IO.Directory.GetFiles(Directory, Filter)) {
             AbstractDataReader reader = new DataReaderTensile(file, "Values Series");
-            AbstractDataInterpreter interpreterStrain = new DataInterpreterTensileStrain(reader.ReadData());
-            var rowStrain = (Path.GetFileNameWithoutExtension(file), interpreterStrain.GetData());
+            AbstractDataInterpreter interpreter = new DataInterpreterTensileStrain(reader.ReadData());
+            var dataRowStrain = interpreter.GetData();
+            removableColumns.ForEach(idx => dataRowStrain.RemoveAt(idx));
+            var rowStrain = (Path.GetFileNameWithoutExtension(file), interpreter.GetData());
             dataStrain.Add(rowStrain);
-            headers = interpreterStrain.GetHeaders();
         }
 
-        var writer = new DataWriter(dataStrain, headers);
+        var headersTarget = GetHeaders();
+        if (_headers != null && _headers.Count > 0) {
+            headersTarget = _headers.Where((row) => row.Value).Select((row) => row.Key).ToList();
+        }
+
+        var writer = new DataWriter(dataStrain, headersTarget);
         writer.Write(outputFile, "TearStrain", Separate);
     }
 }

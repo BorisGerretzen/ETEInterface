@@ -7,16 +7,6 @@ internal class DataInterpreterTensileStrain : AbstractDataInterpreter {
 
     public DataInterpreterTensileStrain(List<List<(double, double)>> data) : base(data) { }
 
-    public override List<string> GetHeaders() {
-        return new List<string> {
-            "min",
-            "mean",
-            "max",
-            "error under",
-            "error over"
-        };
-    }
-
     public override List<double> GetData() {
         return new List<double> {
             GetMinPeak(),
