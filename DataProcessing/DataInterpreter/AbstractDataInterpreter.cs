@@ -1,4 +1,4 @@
-﻿namespace DataProcessing.DataInterpreter; 
+﻿namespace DataProcessing.DataInterpreter;
 
 internal abstract class AbstractDataInterpreter {
     protected readonly List<List<(double, double)>> _data;

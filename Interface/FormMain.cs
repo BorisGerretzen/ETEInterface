@@ -1,25 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DataProcessing.DataProcessor;
+﻿using DataProcessing.DataProcessor;
+using DataProcessing.WinForms;
 
-namespace Interface; 
+namespace Interface;
 
 public partial class FormMain : Form {
     private string _inputDirectory = null!;
     private string _outputFile = null!;
     private Thread _worker = null!;
+    private readonly OptionsPanelFactory.OptionsPanel optionsPanelTear;
+    private readonly OptionsPanelFactory.OptionsPanel optionsPanelTensile;
 
     public FormMain() {
         InitializeComponent();
+        optionsPanelTensile = OptionsPanelFactory.GetOptionsPanel(TensileProcessor.Empty.GetHeaders(), "rebound");
+        optionsPanelTear = OptionsPanelFactory.GetOptionsPanel(TearProcessor.Empty.GetHeaders(), "rebound");
+        // var optionsPanelRebound = OptionsPanelFactory.GetOptionsPanel(TensileProcessor.Empty.GetHeaders(), "rebound");
+
+        tableTensile.GetControlFromPosition(0, 0).Controls.Add(optionsPanelTensile.GetPanel());
+        tableTear.GetControlFromPosition(0, 0).Controls.Add(optionsPanelTear.GetPanel());
+        // tableRebound.GetControlFromPosition(0,0).Controls.Add(optionsPanelRebound.GetPanel());
     }
 
     private void ProgressUpdate(double amount) {
@@ -29,19 +28,22 @@ public partial class FormMain : Form {
     private void btnExport_Click(object sender, EventArgs e) {
         if (_worker != null && _worker.IsAlive) {
             var dialogResult = MessageBox.Show("An export is already running, do you want to cancel it?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-            if (dialogResult == DialogResult.Yes) {
-                _worker.Abort();
-                Directory.Delete("temp", true);
-            }
-            else {
-                return;
-            }
+            if (dialogResult != DialogResult.Yes) return;
+
+            _worker.Abort();
+            Directory.Delete("temp", true);
+        }
+
+        if (string.IsNullOrEmpty(_inputDirectory) || string.IsNullOrEmpty(_outputFile)) {
+            MessageBox.Show("Please specify an input directory and output file using the labeled buttons,", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
         }
 
         if (tabControl1.SelectedTab == tabTensile) {
             _worker = new Thread(() => {
                 DataPrepper.PrepTensile(_inputDirectory, checkRecursive.Checked, ProgressUpdate);
                 AbstractProcessor processor = new TensileProcessor("temp", radioSeparate.Checked);
+                processor.SetHeadersActive(optionsPanelTensile.GetCheckBoxes());
                 processor.Process(_outputFile);
                 Directory.Delete("temp", true);
                 ProgressUpdate(1);
@@ -53,6 +55,7 @@ public partial class FormMain : Form {
             _worker = new Thread(() => {
                 DataPrepper.PrepTensile(_inputDirectory, checkRecursive.Checked, ProgressUpdate);
                 AbstractProcessor processor = new TearProcessor("temp", radioSeparate.Checked);
+                processor.SetHeadersActive(optionsPanelTear.GetCheckBoxes());
                 processor.Process(_outputFile);
                 Directory.Delete("temp", true);
                 ProgressUpdate(1);
@@ -96,5 +99,10 @@ public partial class FormMain : Form {
 
     private void linkEmail_Click(object sender, EventArgs e) {
         Clipboard.SetText(linkEmail.Text);
+    }
+
+    private void radioSeparate_CheckedChanged(object sender, EventArgs e) {
+        btnSelectOutput.Text = "Select output file";
+        _outputFile = string.Empty;
     }
 }
