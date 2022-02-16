@@ -1,14 +1,15 @@
-﻿using DataProcessing.DataProcessor;
+﻿using System.Diagnostics;
+using DataProcessing.DataProcessor;
 using DataProcessing.WinForms;
 
 namespace Interface;
 
 public partial class FormMain : Form {
+    private readonly OptionsPanelFactory.OptionsPanel optionsPanelTear;
+    private readonly OptionsPanelFactory.OptionsPanel optionsPanelTensile;
     private string _inputDirectory = null!;
     private string _outputFile = null!;
     private Thread _worker = null!;
-    private readonly OptionsPanelFactory.OptionsPanel optionsPanelTear;
-    private readonly OptionsPanelFactory.OptionsPanel optionsPanelTensile;
 
     public FormMain() {
         InitializeComponent();
@@ -104,5 +105,9 @@ public partial class FormMain : Form {
     private void radioSeparate_CheckedChanged(object sender, EventArgs e) {
         btnSelectOutput.Text = "Select output file";
         _outputFile = string.Empty;
+    }
+
+    private void linkGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+        Process.Start("explorer", linkGithub.Text);
     }
 }

@@ -56,6 +56,7 @@
             this.tableRebound = new System.Windows.Forms.TableLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tabHelp = new System.Windows.Forms.TabPage();
+            this.linkGithub = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.linkEmail = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
@@ -112,7 +113,7 @@
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.96848F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.03152F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 467F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 469F));
             this.tableLayoutPanel3.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.groupBox2, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.groupBox5, 2, 0);
@@ -185,7 +186,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox2.Size = new System.Drawing.Size(236, 96);
+            this.groupBox2.Size = new System.Drawing.Size(234, 96);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Files";
@@ -216,11 +217,11 @@
             // 
             this.groupBox5.Controls.Add(this.checkRecursive);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox5.Location = new System.Drawing.Point(403, 3);
+            this.groupBox5.Location = new System.Drawing.Point(401, 3);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox5.Size = new System.Drawing.Size(460, 96);
+            this.groupBox5.Size = new System.Drawing.Size(462, 96);
             this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Additional options";
@@ -411,6 +412,7 @@
             // 
             // tabHelp
             // 
+            this.tabHelp.Controls.Add(this.linkGithub);
             this.tabHelp.Controls.Add(this.label2);
             this.tabHelp.Controls.Add(this.linkEmail);
             this.tabHelp.Controls.Add(this.label1);
@@ -422,10 +424,21 @@
             this.tabHelp.Text = "Help";
             this.tabHelp.UseVisualStyleBackColor = true;
             // 
+            // linkGithub
+            // 
+            this.linkGithub.AutoSize = true;
+            this.linkGithub.Location = new System.Drawing.Point(7, 48);
+            this.linkGithub.Name = "linkGithub";
+            this.linkGithub.Size = new System.Drawing.Size(295, 15);
+            this.linkGithub.TabIndex = 3;
+            this.linkGithub.TabStop = true;
+            this.linkGithub.Text = "https://github.com/BorisGerretzen/ETEInterface/issues";
+            this.linkGithub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkGithub_LinkClicked);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 51);
+            this.label2.Location = new System.Drawing.Point(7, 87);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(420, 15);
@@ -451,10 +464,10 @@
             this.label1.Location = new System.Drawing.Point(7, 5);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(491, 15);
+            this.label1.Size = new System.Drawing.Size(626, 15);
             this.label1.TabIndex = 0;
-            this.label1.Text = "If you need help or have a  feature suggestion, send an email to the following em" +
-    "ail address:";
+            this.label1.Text = "If you need help or have a  feature suggestion, send an email to the email addres" +
+    "s below, or create an issue on Github.";
             // 
             // FormMain
             // 
@@ -524,6 +537,7 @@
         private Panel panel2;
         private Panel panel3;
         private Panel panel4;
+        private LinkLabel linkGithub;
     }
 }
 
