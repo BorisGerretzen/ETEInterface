@@ -12,5 +12,10 @@ internal abstract class AbstractDataReader {
         SheetName = sheetName;
     }
 
+    /// <summary>
+    /// Reads the data from a file 
+    /// </summary>
+    /// <param name="sheetName">Name of the sheet to read from</param>
+    /// <returns></returns>
     public abstract List<List<(double, double)>> ReadData(string sheetName = "");
 }
