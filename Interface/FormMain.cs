@@ -48,7 +48,7 @@ public partial class FormMain : Form {
         }
 
         // Tensile
-        if (tabControl1.SelectedTab == tabTensile) {
+        if (tabPages.SelectedTab == tabTensile) {
             _worker = new Thread(() => {
                 DataPrepper.PrepTensile(_inputDirectory, checkRecursive.Checked, ProgressUpdate);
                 AbstractProcessor processor = new TensileProcessor("temp", radioSeparate.Checked);
@@ -61,7 +61,7 @@ public partial class FormMain : Form {
             _worker.Start();
         }
         // Tear
-        else if (tabControl1.SelectedTab == tabTear) {
+        else if (tabPages.SelectedTab == tabTear) {
             _worker = new Thread(() => {
                 DataPrepper.PrepTensile(_inputDirectory, checkRecursive.Checked, ProgressUpdate);
                 AbstractProcessor processor = new TearProcessor("temp", radioSeparate.Checked);
@@ -119,5 +119,10 @@ public partial class FormMain : Form {
 
     private void linkGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
         Process.Start("explorer", linkGithub.Text);
+    }
+
+    private void groupBox1_Enter(object sender, EventArgs e)
+    {
+
     }
 }
