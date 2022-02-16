@@ -22,11 +22,17 @@ public partial class FormMain : Form {
         // tableRebound.GetControlFromPosition(0,0).Controls.Add(optionsPanelRebound.GetPanel());
     }
 
+    /// <summary>
+    /// Sets the progress bar to a set point
+    /// </summary>
+    /// <param name="amount">Point to set the progress bar to (0-1)</param>
     private void ProgressUpdate(double amount) {
         progressBar.Invoke((MethodInvoker)delegate { progressBar.Value = (int)Math.Floor(amount * 100); });
     }
 
+
     private void btnExport_Click(object sender, EventArgs e) {
+        // Check if an export is already running
         if (_worker != null && _worker.IsAlive) {
             var dialogResult = MessageBox.Show("An export is already running, do you want to cancel it?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
             if (dialogResult != DialogResult.Yes) return;
@@ -35,11 +41,13 @@ public partial class FormMain : Form {
             Directory.Delete("temp", true);
         }
 
+        // Check if input and output paths are set
         if (string.IsNullOrEmpty(_inputDirectory) || string.IsNullOrEmpty(_outputFile)) {
             MessageBox.Show("Please specify an input directory and output file using the labeled buttons,", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
+        // Tensile
         if (tabControl1.SelectedTab == tabTensile) {
             _worker = new Thread(() => {
                 DataPrepper.PrepTensile(_inputDirectory, checkRecursive.Checked, ProgressUpdate);
@@ -52,6 +60,7 @@ public partial class FormMain : Form {
             });
             _worker.Start();
         }
+        // Tear
         else if (tabControl1.SelectedTab == tabTear) {
             _worker = new Thread(() => {
                 DataPrepper.PrepTensile(_inputDirectory, checkRecursive.Checked, ProgressUpdate);
@@ -66,6 +75,7 @@ public partial class FormMain : Form {
         }
     }
 
+    
     private void btnSelectInput_Click(object sender, EventArgs e) {
         using (var fbd = new FolderBrowserDialog()) {
             fbd.SelectedPath = Directory.GetCurrentDirectory();
