@@ -47,22 +47,14 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabTensile = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.checkTensileErrorOver = new System.Windows.Forms.CheckBox();
-            this.checkTensileErrorUnder = new System.Windows.Forms.CheckBox();
-            this.checkTensileMax = new System.Windows.Forms.CheckBox();
-            this.checkTensileMean = new System.Windows.Forms.CheckBox();
-            this.checkTensileMin = new System.Windows.Forms.CheckBox();
+            this.tableTensile = new System.Windows.Forms.TableLayoutPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.tabTear = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.tableTear = new System.Windows.Forms.TableLayoutPanel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.tabRebound = new System.Windows.Forms.TabPage();
+            this.tableRebound = new System.Windows.Forms.TableLayoutPanel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.tabHelp = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.linkEmail = new System.Windows.Forms.LinkLabel();
@@ -78,11 +70,11 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabTensile.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.tableTensile.SuspendLayout();
             this.tabTear.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
+            this.tableTear.SuspendLayout();
+            this.tabRebound.SuspendLayout();
+            this.tableRebound.SuspendLayout();
             this.tabHelp.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,7 +112,7 @@
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.96848F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.03152F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 457F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 467F));
             this.tableLayoutPanel3.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.groupBox2, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.groupBox5, 2, 0);
@@ -130,7 +122,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 97F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 102F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(867, 102);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
@@ -141,7 +133,7 @@
             this.panel1.Location = new System.Drawing.Point(4, 3);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(151, 96);
+            this.panel1.Size = new System.Drawing.Size(147, 96);
             this.panel1.TabIndex = 0;
             // 
             // groupBox3
@@ -153,7 +145,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox3.Size = new System.Drawing.Size(151, 96);
+            this.groupBox3.Size = new System.Drawing.Size(147, 96);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Output";
@@ -182,17 +174,18 @@
             this.radioSeparate.TabStop = true;
             this.radioSeparate.Text = "Create file";
             this.radioSeparate.UseVisualStyleBackColor = true;
+            this.radioSeparate.CheckedChanged += new System.EventHandler(this.radioSeparate_CheckedChanged);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnSelectOutput);
             this.groupBox2.Controls.Add(this.btnSelectInput);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(163, 3);
+            this.groupBox2.Location = new System.Drawing.Point(159, 3);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox2.Size = new System.Drawing.Size(242, 96);
+            this.groupBox2.Size = new System.Drawing.Size(236, 96);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Files";
@@ -223,11 +216,11 @@
             // 
             this.groupBox5.Controls.Add(this.checkRecursive);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox5.Location = new System.Drawing.Point(413, 3);
+            this.groupBox5.Location = new System.Drawing.Point(403, 3);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox5.Size = new System.Drawing.Size(450, 96);
+            this.groupBox5.Size = new System.Drawing.Size(460, 96);
             this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Additional options";
@@ -313,7 +306,7 @@
             // 
             // tabTensile
             // 
-            this.tabTensile.Controls.Add(this.tableLayoutPanel4);
+            this.tabTensile.Controls.Add(this.tableTensile);
             this.tabTensile.Location = new System.Drawing.Point(4, 24);
             this.tabTensile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabTensile.Name = "tabTensile";
@@ -322,202 +315,99 @@
             this.tabTensile.Text = "Tensile";
             this.tabTensile.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel4
+            // tableTensile
             // 
-            this.tableLayoutPanel4.ColumnCount = 3;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.12913F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.87087F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 664F));
-            this.tableLayoutPanel4.Controls.Add(this.groupBox4, 0, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(1058, 175);
-            this.tableLayoutPanel4.TabIndex = 0;
+            this.tableTensile.ColumnCount = 3;
+            this.tableTensile.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableTensile.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
+            this.tableTensile.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableTensile.Controls.Add(this.panel2, 0, 0);
+            this.tableTensile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableTensile.Location = new System.Drawing.Point(0, 0);
+            this.tableTensile.Margin = new System.Windows.Forms.Padding(0);
+            this.tableTensile.Name = "tableTensile";
+            this.tableTensile.RowCount = 1;
+            this.tableTensile.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableTensile.Size = new System.Drawing.Size(1058, 175);
+            this.tableTensile.TabIndex = 0;
             // 
-            // groupBox4
+            // panel2
             // 
-            this.groupBox4.Controls.Add(this.checkTensileErrorOver);
-            this.groupBox4.Controls.Add(this.checkTensileErrorUnder);
-            this.groupBox4.Controls.Add(this.checkTensileMax);
-            this.groupBox4.Controls.Add(this.checkTensileMean);
-            this.groupBox4.Controls.Add(this.checkTensileMin);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox4.Location = new System.Drawing.Point(4, 3);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox4.Size = new System.Drawing.Size(106, 169);
-            this.groupBox4.TabIndex = 1;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Data selection";
-            // 
-            // checkTensileErrorOver
-            // 
-            this.checkTensileErrorOver.AutoSize = true;
-            this.checkTensileErrorOver.Location = new System.Drawing.Point(7, 128);
-            this.checkTensileErrorOver.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.checkTensileErrorOver.Name = "checkTensileErrorOver";
-            this.checkTensileErrorOver.Size = new System.Drawing.Size(77, 19);
-            this.checkTensileErrorOver.TabIndex = 9;
-            this.checkTensileErrorOver.Text = "Error over";
-            this.checkTensileErrorOver.UseVisualStyleBackColor = true;
-            // 
-            // checkTensileErrorUnder
-            // 
-            this.checkTensileErrorUnder.AutoSize = true;
-            this.checkTensileErrorUnder.Location = new System.Drawing.Point(7, 102);
-            this.checkTensileErrorUnder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.checkTensileErrorUnder.Name = "checkTensileErrorUnder";
-            this.checkTensileErrorUnder.Size = new System.Drawing.Size(85, 19);
-            this.checkTensileErrorUnder.TabIndex = 8;
-            this.checkTensileErrorUnder.Text = "Error under";
-            this.checkTensileErrorUnder.UseVisualStyleBackColor = true;
-            // 
-            // checkTensileMax
-            // 
-            this.checkTensileMax.AutoSize = true;
-            this.checkTensileMax.Location = new System.Drawing.Point(7, 75);
-            this.checkTensileMax.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.checkTensileMax.Name = "checkTensileMax";
-            this.checkTensileMax.Size = new System.Drawing.Size(81, 19);
-            this.checkTensileMax.TabIndex = 7;
-            this.checkTensileMax.Text = "Maximum";
-            this.checkTensileMax.UseVisualStyleBackColor = true;
-            // 
-            // checkTensileMean
-            // 
-            this.checkTensileMean.AutoSize = true;
-            this.checkTensileMean.Location = new System.Drawing.Point(7, 48);
-            this.checkTensileMean.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.checkTensileMean.Name = "checkTensileMean";
-            this.checkTensileMean.Size = new System.Drawing.Size(56, 19);
-            this.checkTensileMean.TabIndex = 6;
-            this.checkTensileMean.Text = "Mean";
-            this.checkTensileMean.UseVisualStyleBackColor = true;
-            // 
-            // checkTensileMin
-            // 
-            this.checkTensileMin.AutoSize = true;
-            this.checkTensileMin.Location = new System.Drawing.Point(7, 22);
-            this.checkTensileMin.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.checkTensileMin.Name = "checkTensileMin";
-            this.checkTensileMin.Size = new System.Drawing.Size(79, 19);
-            this.checkTensileMin.TabIndex = 5;
-            this.checkTensileMin.Text = "Minimum";
-            this.checkTensileMin.UseVisualStyleBackColor = true;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(126, 169);
+            this.panel2.TabIndex = 0;
             // 
             // tabTear
             // 
-            this.tabTear.Controls.Add(this.tableLayoutPanel5);
+            this.tabTear.Controls.Add(this.tableTear);
             this.tabTear.Location = new System.Drawing.Point(4, 24);
             this.tabTear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabTear.Name = "tabTear";
-            this.tabTear.Size = new System.Drawing.Size(1060, 174);
+            this.tabTear.Size = new System.Drawing.Size(1058, 175);
             this.tabTear.TabIndex = 1;
             this.tabTear.Text = "Tear";
             this.tabTear.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel5
+            // tableTear
             // 
-            this.tableLayoutPanel5.ColumnCount = 3;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.12913F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.87087F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 664F));
-            this.tableLayoutPanel5.Controls.Add(this.groupBox6, 0, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(1060, 174);
-            this.tableLayoutPanel5.TabIndex = 1;
+            this.tableTear.ColumnCount = 3;
+            this.tableTear.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableTear.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
+            this.tableTear.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableTear.Controls.Add(this.panel3, 0, 0);
+            this.tableTear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableTear.Location = new System.Drawing.Point(0, 0);
+            this.tableTear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tableTear.Name = "tableTear";
+            this.tableTear.RowCount = 1;
+            this.tableTear.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableTear.Size = new System.Drawing.Size(1058, 175);
+            this.tableTear.TabIndex = 1;
             // 
-            // groupBox6
+            // panel3
             // 
-            this.groupBox6.Controls.Add(this.checkBox1);
-            this.groupBox6.Controls.Add(this.checkBox2);
-            this.groupBox6.Controls.Add(this.checkBox3);
-            this.groupBox6.Controls.Add(this.checkBox4);
-            this.groupBox6.Controls.Add(this.checkBox5);
-            this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox6.Location = new System.Drawing.Point(4, 3);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox6.Size = new System.Drawing.Size(107, 168);
-            this.groupBox6.TabIndex = 0;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Data selection";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(7, 128);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(77, 19);
-            this.checkBox1.TabIndex = 9;
-            this.checkBox1.Text = "Error over";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(7, 102);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(85, 19);
-            this.checkBox2.TabIndex = 8;
-            this.checkBox2.Text = "Error under";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(7, 75);
-            this.checkBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(81, 19);
-            this.checkBox3.TabIndex = 7;
-            this.checkBox3.Text = "Maximum";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(7, 48);
-            this.checkBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(56, 19);
-            this.checkBox4.TabIndex = 6;
-            this.checkBox4.Text = "Mean";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(7, 22);
-            this.checkBox5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(79, 19);
-            this.checkBox5.TabIndex = 5;
-            this.checkBox5.Text = "Minimum";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(3, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(126, 169);
+            this.panel3.TabIndex = 0;
             // 
             // tabRebound
             // 
+            this.tabRebound.Controls.Add(this.tableRebound);
             this.tabRebound.Location = new System.Drawing.Point(4, 24);
             this.tabRebound.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabRebound.Name = "tabRebound";
-            this.tabRebound.Size = new System.Drawing.Size(1060, 174);
+            this.tabRebound.Size = new System.Drawing.Size(1058, 175);
             this.tabRebound.TabIndex = 2;
             this.tabRebound.Text = "Rebound";
             this.tabRebound.UseVisualStyleBackColor = true;
+            // 
+            // tableRebound
+            // 
+            this.tableRebound.ColumnCount = 3;
+            this.tableRebound.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableRebound.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
+            this.tableRebound.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableRebound.Controls.Add(this.panel4, 0, 0);
+            this.tableRebound.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableRebound.Location = new System.Drawing.Point(0, 0);
+            this.tableRebound.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tableRebound.Name = "tableRebound";
+            this.tableRebound.RowCount = 1;
+            this.tableRebound.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableRebound.Size = new System.Drawing.Size(1058, 175);
+            this.tableRebound.TabIndex = 2;
+            // 
+            // panel4
+            // 
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(3, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(126, 169);
+            this.panel4.TabIndex = 0;
             // 
             // tabHelp
             // 
@@ -527,7 +417,7 @@
             this.tabHelp.Location = new System.Drawing.Point(4, 24);
             this.tabHelp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabHelp.Name = "tabHelp";
-            this.tabHelp.Size = new System.Drawing.Size(1060, 174);
+            this.tabHelp.Size = new System.Drawing.Size(1058, 175);
             this.tabHelp.TabIndex = 3;
             this.tabHelp.Text = "Help";
             this.tabHelp.UseVisualStyleBackColor = true;
@@ -549,10 +439,10 @@
             this.linkEmail.Location = new System.Drawing.Point(7, 24);
             this.linkEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkEmail.Name = "linkEmail";
-            this.linkEmail.Size = new System.Drawing.Size(455, 15);
+            this.linkEmail.Size = new System.Drawing.Size(144, 15);
             this.linkEmail.TabIndex = 1;
             this.linkEmail.TabStop = true;
-            this.linkEmail.Text = "contact-project+borisgerretzen-ete-interface-33572193-issue-@incoming.gitlab.com";
+            this.linkEmail.Text = "ete@fire.fundersclub.com";
             this.linkEmail.Click += new System.EventHandler(this.linkEmail_Click);
             // 
             // label1
@@ -591,13 +481,11 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabTensile.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.tableTensile.ResumeLayout(false);
             this.tabTear.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
+            this.tableTear.ResumeLayout(false);
+            this.tabRebound.ResumeLayout(false);
+            this.tableRebound.ResumeLayout(false);
             this.tabHelp.ResumeLayout(false);
             this.tabHelp.PerformLayout();
             this.ResumeLayout(false);
@@ -623,27 +511,19 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabTensile;
         private System.Windows.Forms.TabPage tabTear;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.TableLayoutPanel tableTear;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.ProgressBar progressBar;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.CheckBox checkTensileErrorOver;
-        private System.Windows.Forms.CheckBox checkTensileErrorUnder;
-        private System.Windows.Forms.CheckBox checkTensileMax;
-        private System.Windows.Forms.CheckBox checkTensileMean;
-        private System.Windows.Forms.CheckBox checkTensileMin;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.TableLayoutPanel tableTensile;
         private System.Windows.Forms.TabPage tabRebound;
         private System.Windows.Forms.TabPage tabHelp;
         private System.Windows.Forms.LinkLabel linkEmail;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private TableLayoutPanel tableRebound;
+        private Panel panel2;
+        private Panel panel3;
+        private Panel panel4;
     }
 }
 

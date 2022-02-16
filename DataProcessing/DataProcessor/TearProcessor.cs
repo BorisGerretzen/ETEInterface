@@ -1,22 +1,20 @@
 ﻿using DataProcessing.DataInterpreter;
 using DataProcessing.DataReader;
 
-namespace DataProcessing.DataProcessor; 
+namespace DataProcessing.DataProcessor;
 
 public class TearProcessor : AbstractProcessor {
+    public static TearProcessor Empty = new("", false);
+
     public TearProcessor(string directory, bool separate) : base(directory, separate) {
         Filter = "*.xlsx";
-    }
-
-    public override List<string> GetHeaders()
-    {
-        return new List<string> {
+        SetHeaders(new List<string> {
             "min",
             "mean",
             "max",
             "error bottom",
             "error top"
-        };
+        });
     }
 
     public override void Process(string outputFile) {
@@ -28,14 +26,12 @@ public class TearProcessor : AbstractProcessor {
             AbstractDataInterpreter interpreter = new DataInterpreterTensileStrain(reader.ReadData());
             var dataRowStrain = interpreter.GetData();
             removableColumns.ForEach(idx => dataRowStrain.RemoveAt(idx));
-            var rowStrain = (Path.GetFileNameWithoutExtension(file), interpreter.GetData());
+            var rowStrain = (Path.GetFileNameWithoutExtension(file), dataRowStrain);
             dataStrain.Add(rowStrain);
         }
 
         var headersTarget = GetHeaders();
-        if (_headers != null && _headers.Count > 0) {
-            headersTarget = _headers.Where((row) => row.Value).Select((row) => row.Key).ToList();
-        }
+        if (_headersActive != null && _headersActive.Count > 0) headersTarget = _headersActive.Where(row => row.Value).Select(row => row.Key).ToList();
 
         var writer = new DataWriter(dataStrain, headersTarget);
         writer.Write(outputFile, "TearStrain", Separate);

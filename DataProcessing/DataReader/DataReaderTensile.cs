@@ -1,8 +1,10 @@
 ﻿using OfficeOpenXml;
 
-namespace DataProcessing.DataReader; 
+namespace DataProcessing.DataReader;
 
 internal class DataReaderTensile : AbstractDataReader {
+    public DataReaderTensile(string fileName, string sheetName) : base(fileName, sheetName) { }
+
     public override List<List<(double, double)>> ReadData(string sheetName = "") {
         if (string.IsNullOrEmpty(sheetName) && string.IsNullOrEmpty(SheetName)) throw new ArgumentException("No sheetName passed to function, but there was also no sheetName found in object.");
 
@@ -38,6 +40,4 @@ internal class DataReaderTensile : AbstractDataReader {
 
         return returnList;
     }
-
-    public DataReaderTensile(string fileName, string sheetName) : base(fileName, sheetName) { }
 }

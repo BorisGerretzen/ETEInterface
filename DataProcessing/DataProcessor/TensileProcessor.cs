@@ -4,18 +4,17 @@ using DataProcessing.DataReader;
 namespace DataProcessing.DataProcessor;
 
 public class TensileProcessor : AbstractProcessor {
+    public static TensileProcessor Empty = new("", false);
+
     public TensileProcessor(string directory, bool separate) : base(directory, separate) {
         Filter = "*.xlsx";
-    }
-
-    public override List<string> GetHeaders() {
-        return new List<string> {
+        SetHeaders(new List<string> {
             "min",
             "mean",
             "max",
             "error bottom",
             "error top"
-        };
+        });
     }
 
     public override void Process(string outputFile) {
@@ -43,9 +42,7 @@ public class TensileProcessor : AbstractProcessor {
         }
 
         var headersTarget = GetHeaders();
-        if (_headers != null && _headers.Count > 0) {
-            headersTarget = _headers.Where((row) => row.Value).Select((row) => row.Key).ToList();
-        }
+        if (_headersActive != null && _headersActive.Count > 0) headersTarget = _headersActive.Where(row => row.Value).Select(row => row.Key).ToList();
 
         var writer = new DataWriter(dataStrain, headersTarget);
         writer.Write(outputFile, "TensileStrain", Separate);

@@ -1,6 +1,6 @@
 ﻿using OfficeOpenXml;
 
-namespace DataProcessing.DataReader; 
+namespace DataProcessing.DataReader;
 
 internal abstract class AbstractDataReader {
     protected string FileName;
