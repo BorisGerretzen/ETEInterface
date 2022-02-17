@@ -59,9 +59,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(514, 253);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FormAddGraph";
-            this.Text = "FormAddGraph";
+            this.Text = "New graph combination";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

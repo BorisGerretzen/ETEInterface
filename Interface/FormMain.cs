@@ -243,7 +243,7 @@ public partial class FormMain : Form {
                 comboGraphSheet.SelectedItem = template.SheetName;
                 btnSelectCategories.Text = string.Join(", ", template.Categories);
 
-                MessageBox.Show($"Template {ofd.SafeFileName} loaded");
+                MessageBox.Show($"Template '{ofd.SafeFileName}' loaded");
             }
         }
     }
@@ -254,6 +254,7 @@ public partial class FormMain : Form {
         }
 
         File.WriteAllText($"templates/{txtGraphExportFilename.Text}.json", JsonSerializer.Serialize(_template));
+        MessageBox.Show($"Template '{txtGraphExportFilename.Text}' has been successfully exported.");
     }
 
     #endregion
