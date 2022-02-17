@@ -1,5 +1,7 @@
 ﻿using System.Data;
 using System.Diagnostics;
+using System.Text;
+using System.Text.Json;
 using DataProcessing.DataProcessor;
 using DataProcessing.WinForms;
 using Grapher;
@@ -22,7 +24,7 @@ public partial class FormMain : Form {
     private List<string> categoryHeaderNames = new();
     private DataSet _dataSet;
     private DataLoader _dataLoader;
-    private List<(List<string>, List<string>)> _graphCombinations = new();
+    private GraphTemplate _template;
 
     public FormMain() {
         InitializeComponent();
@@ -142,8 +144,6 @@ public partial class FormMain : Form {
         Process.Start("explorer", linkGithub.Text);
     }
 
-    private void groupBox1_Enter(object sender, EventArgs e) { }
-
     #region Graphs
 
     /// <summary>
@@ -153,6 +153,10 @@ public partial class FormMain : Form {
     private void SetGraphControls(bool state) {
         comboGraphSheet.Enabled = state;
         btnSelectCategories.Enabled = state;
+        btnSelectCombinations.Enabled = state;
+        txtGraphExportFilename.Enabled = state;
+        btnSaveGraphTemplate.Enabled = state;
+        btnLoadGraphTemplate.Enabled = state;
     }
 
     private void btnSelectGraphFile_Click(object sender, EventArgs e) {
@@ -203,12 +207,17 @@ public partial class FormMain : Form {
             categoryHeaderNames.Add((string)cell.Value);
         }
 
+        btnSelectCategories.Text = string.Join(", ", categoryHeaderNames);
+
         // Create data loader
         _dataLoader = new DataLoader(_dataSet.Tables[(string)comboGraphSheet.SelectedItem], categoryHeaderNames);
+        _template = new GraphTemplate();
+        _template.Categories = categoryHeaderNames;
+        _template.SheetName = (string)comboGraphSheet.SelectedItem;
     }
 
     private void AddGraphComboResultCallback(List<string> options1, List<string> options2) {
-        _graphCombinations.Add((options1, options2));
+        _template.Add(options1, options2);
         var categories = _dataLoader.GetCategoryOptions();
         var formAddGraph = new FormAddGraph(categories, AddGraphComboResultCallback);
         formAddGraph.Show();
@@ -220,5 +229,42 @@ public partial class FormMain : Form {
         formAddGraph.Show();
     }
 
+    private void btnLoadGraphTemplate_Click(object sender, EventArgs e) {
+        using (OpenFileDialog ofd = new OpenFileDialog()) {
+            ofd.Filter = "JSON templates|*.json";
+            ofd.InitialDirectory = Directory.GetCurrentDirectory() + "\\templates";
+            var result = ofd.ShowDialog();
+            if (result == DialogResult.OK) {
+                var stream = ofd.OpenFile();
+                var reader = new StreamReader(stream, Encoding.UTF8);
+                string json = reader.ReadToEnd();
+                GraphTemplate template = JsonSerializer.Deserialize<GraphTemplate>(json);
+                _template = template;
+                comboGraphSheet.SelectedItem = template.SheetName;
+                btnSelectCategories.Text = string.Join(", ", template.Categories);
+
+                MessageBox.Show($"Template {ofd.SafeFileName} loaded");
+            }
+        }
+    }
+
+    private void btnSaveGraphTemplate_Click(object sender, EventArgs e) {
+        if (!Directory.Exists("templates")) {
+            Directory.CreateDirectory("templates");
+        }
+
+        File.WriteAllText($"templates/{txtGraphExportFilename.Text}.json", JsonSerializer.Serialize(_template));
+    }
+
     #endregion
+
+    private void tabControlMain_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (tabControlMain.SelectedTab == tabGraphs) {
+            groupExport.Enabled = false;
+        }
+        else {
+            groupExport.Enabled = true;
+        }
+    }
 }

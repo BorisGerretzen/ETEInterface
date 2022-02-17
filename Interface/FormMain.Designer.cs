@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupExport = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -68,12 +68,15 @@
             this.tabData = new System.Windows.Forms.TabPage();
             this.dataGridViewGraph = new System.Windows.Forms.DataGridView();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.txtGraphExportFilename = new System.Windows.Forms.TextBox();
+            this.btnSaveGraphTemplate = new System.Windows.Forms.Button();
+            this.btnLoadGraphTemplate = new System.Windows.Forms.Button();
+            this.btnSelectCombinations = new System.Windows.Forms.Button();
+            this.btnSelectCategories = new System.Windows.Forms.Button();
             this.comboGraphSheet = new System.Windows.Forms.ComboBox();
             this.btnSelectGraphFile = new System.Windows.Forms.Button();
-            this.btnSelectCategories = new System.Windows.Forms.Button();
-            this.btnCombinations = new System.Windows.Forms.Button();
             this.tableLayoutPanel2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.groupExport.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -104,7 +107,7 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 83.6773F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.3227F));
-            this.tableLayoutPanel2.Controls.Add(this.groupBox1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.groupExport, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 490);
@@ -115,19 +118,18 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(751, 126);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
-            // groupBox1
+            // groupExport
             // 
-            this.groupBox1.Controls.Add(this.tableLayoutPanel3);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(4, 3);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Size = new System.Drawing.Size(620, 120);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Export options";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            this.groupExport.Controls.Add(this.tableLayoutPanel3);
+            this.groupExport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupExport.Location = new System.Drawing.Point(4, 3);
+            this.groupExport.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupExport.Name = "groupExport";
+            this.groupExport.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupExport.Size = new System.Drawing.Size(620, 120);
+            this.groupExport.TabIndex = 2;
+            this.groupExport.TabStop = false;
+            this.groupExport.Text = "Export options";
             // 
             // tableLayoutPanel3
             // 
@@ -325,6 +327,7 @@
             this.tabControlMain.SelectedIndex = 0;
             this.tabControlMain.Size = new System.Drawing.Size(751, 481);
             this.tabControlMain.TabIndex = 2;
+            this.tabControlMain.SelectedIndexChanged += new System.EventHandler(this.tabControlMain_SelectedIndexChanged);
             // 
             // tabTensile
             // 
@@ -571,7 +574,10 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.btnCombinations);
+            this.panel5.Controls.Add(this.txtGraphExportFilename);
+            this.panel5.Controls.Add(this.btnSaveGraphTemplate);
+            this.panel5.Controls.Add(this.btnLoadGraphTemplate);
+            this.panel5.Controls.Add(this.btnSelectCombinations);
             this.panel5.Controls.Add(this.btnSelectCategories);
             this.panel5.Controls.Add(this.comboGraphSheet);
             this.panel5.Controls.Add(this.btnSelectGraphFile);
@@ -580,6 +586,54 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(141, 441);
             this.panel5.TabIndex = 2;
+            // 
+            // txtGraphExportFilename
+            // 
+            this.txtGraphExportFilename.Location = new System.Drawing.Point(3, 288);
+            this.txtGraphExportFilename.Name = "txtGraphExportFilename";
+            this.txtGraphExportFilename.PlaceholderText = "Template name";
+            this.txtGraphExportFilename.Size = new System.Drawing.Size(134, 23);
+            this.txtGraphExportFilename.TabIndex = 6;
+            // 
+            // btnSaveGraphTemplate
+            // 
+            this.btnSaveGraphTemplate.Location = new System.Drawing.Point(3, 317);
+            this.btnSaveGraphTemplate.Name = "btnSaveGraphTemplate";
+            this.btnSaveGraphTemplate.Size = new System.Drawing.Size(135, 57);
+            this.btnSaveGraphTemplate.TabIndex = 5;
+            this.btnSaveGraphTemplate.Text = "Save as template";
+            this.btnSaveGraphTemplate.UseVisualStyleBackColor = true;
+            this.btnSaveGraphTemplate.Click += new System.EventHandler(this.btnSaveGraphTemplate_Click);
+            // 
+            // btnLoadGraphTemplate
+            // 
+            this.btnLoadGraphTemplate.Location = new System.Drawing.Point(3, 380);
+            this.btnLoadGraphTemplate.Name = "btnLoadGraphTemplate";
+            this.btnLoadGraphTemplate.Size = new System.Drawing.Size(135, 57);
+            this.btnLoadGraphTemplate.TabIndex = 4;
+            this.btnLoadGraphTemplate.Text = "Load from template";
+            this.btnLoadGraphTemplate.UseVisualStyleBackColor = true;
+            this.btnLoadGraphTemplate.Click += new System.EventHandler(this.btnLoadGraphTemplate_Click);
+            // 
+            // btnSelectCombinations
+            // 
+            this.btnSelectCombinations.Location = new System.Drawing.Point(3, 96);
+            this.btnSelectCombinations.Name = "btnSelectCombinations";
+            this.btnSelectCombinations.Size = new System.Drawing.Size(135, 26);
+            this.btnSelectCombinations.TabIndex = 3;
+            this.btnSelectCombinations.Text = "Select combinations";
+            this.btnSelectCombinations.UseVisualStyleBackColor = true;
+            this.btnSelectCombinations.Click += new System.EventHandler(this.btnCombinations_Click);
+            // 
+            // btnSelectCategories
+            // 
+            this.btnSelectCategories.Location = new System.Drawing.Point(3, 64);
+            this.btnSelectCategories.Name = "btnSelectCategories";
+            this.btnSelectCategories.Size = new System.Drawing.Size(135, 26);
+            this.btnSelectCategories.TabIndex = 2;
+            this.btnSelectCategories.Text = "Select categories";
+            this.btnSelectCategories.UseVisualStyleBackColor = true;
+            this.btnSelectCategories.Click += new System.EventHandler(this.btnSelectCategories_Click);
             // 
             // comboGraphSheet
             // 
@@ -601,26 +655,6 @@
             this.btnSelectGraphFile.UseVisualStyleBackColor = true;
             this.btnSelectGraphFile.Click += new System.EventHandler(this.btnSelectGraphFile_Click);
             // 
-            // btnSelectCategories
-            // 
-            this.btnSelectCategories.Location = new System.Drawing.Point(3, 99);
-            this.btnSelectCategories.Name = "btnSelectCategories";
-            this.btnSelectCategories.Size = new System.Drawing.Size(135, 26);
-            this.btnSelectCategories.TabIndex = 2;
-            this.btnSelectCategories.Text = "Select categories";
-            this.btnSelectCategories.UseVisualStyleBackColor = true;
-            this.btnSelectCategories.Click += new System.EventHandler(this.btnSelectCategories_Click);
-            // 
-            // btnCombinations
-            // 
-            this.btnCombinations.Location = new System.Drawing.Point(3, 131);
-            this.btnCombinations.Name = "btnCombinations";
-            this.btnCombinations.Size = new System.Drawing.Size(135, 26);
-            this.btnCombinations.TabIndex = 3;
-            this.btnCombinations.Text = "Select combinations";
-            this.btnCombinations.UseVisualStyleBackColor = true;
-            this.btnCombinations.Click += new System.EventHandler(this.btnCombinations_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -634,7 +668,7 @@
             this.Name = "FormMain";
             this.Text = "Dataconvertinator";
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
+            this.groupExport.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -661,6 +695,7 @@
             this.tabData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGraph)).EndInit();
             this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -668,7 +703,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupExport;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton radioSeparate;
@@ -709,7 +744,10 @@
         private Button btnSelectGraphFile;
         private ComboBox comboGraphSheet;
         private Button btnSelectCategories;
-        private Button btnCombinations;
+        private Button btnSelectCombinations;
+        private Button btnSaveGraphTemplate;
+        private Button btnLoadGraphTemplate;
+        private TextBox txtGraphExportFilename;
     }
 }
 

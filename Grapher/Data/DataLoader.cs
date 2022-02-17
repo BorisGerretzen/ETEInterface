@@ -23,12 +23,12 @@ namespace Grapher {
         /// Contains all possible options for each category
         /// Might be null if GetCategoryOptions has not been called
         /// </summary>
-        private Dictionary<string, HashSet<string>> _categoryOptions;
+        private Dictionary<string, HashSet<string>>? _categoryOptions;
 
         /// <summary>
         /// Names of the category header
         /// </summary>
-        private List<string> _categoryHeaderNames;
+        private readonly List<string> _categoryHeaderNames;
 
         /// <summary>
         /// Splits the data into the keys (categories) and values of each sample.

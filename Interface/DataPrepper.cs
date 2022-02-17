@@ -34,6 +34,9 @@ public static class DataPrepper {
     /// <param name="recursive">True to also search subdirectories</param>
     /// <param name="progressUpdate">Delegate which is called every time a sheet is converted</param>
     public static void PrepTensile(string inputDir, bool recursive, Action<double> progressUpdate) {
+        if (Directory.Exists("temp")) {
+            Directory.Delete("temp", true);
+        }
         Directory.CreateDirectory("temp");
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
         Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
