@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DataProcessing.WinForms\DataProcessing.WinForms.csproj" />
     <ProjectReference Include="..\DataProcessing\DataProcessing.csproj" />
+    <ProjectReference Include="..\Grapher\Grapher.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -45,7 +45,7 @@
             this.btnExport = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tabPages = new System.Windows.Forms.TabControl();
+            this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabTensile = new System.Windows.Forms.TabPage();
             this.tableTensile = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -62,7 +62,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabGraphs = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.panelGraph = new System.Windows.Forms.Panel();
+            this.tabControlGraph = new System.Windows.Forms.TabControl();
+            this.tabGraph = new System.Windows.Forms.TabPage();
+            this.pictureGraph = new System.Windows.Forms.PictureBox();
+            this.tabData = new System.Windows.Forms.TabPage();
+            this.dataGridViewGraph = new System.Windows.Forms.DataGridView();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.comboGraphSheet = new System.Windows.Forms.ComboBox();
+            this.btnSelectGraphFile = new System.Windows.Forms.Button();
+            this.btnSelectCategories = new System.Windows.Forms.Button();
+            this.btnCombinations = new System.Windows.Forms.Button();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -72,7 +81,7 @@
             this.groupBox5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tabPages.SuspendLayout();
+            this.tabControlMain.SuspendLayout();
             this.tabTensile.SuspendLayout();
             this.tableTensile.SuspendLayout();
             this.tabTear.SuspendLayout();
@@ -82,6 +91,12 @@
             this.tabHelp.SuspendLayout();
             this.tabGraphs.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tabControlGraph.SuspendLayout();
+            this.tabGraph.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureGraph)).BeginInit();
+            this.tabData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGraph)).BeginInit();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -92,12 +107,12 @@
             this.tableLayoutPanel2.Controls.Add(this.groupBox1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 402);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 490);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(751, 125);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(751, 126);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // groupBox1
@@ -108,7 +123,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Size = new System.Drawing.Size(620, 119);
+            this.groupBox1.Size = new System.Drawing.Size(620, 120);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Export options";
@@ -129,7 +144,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(612, 97);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(612, 98);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // panel1
@@ -139,7 +154,7 @@
             this.panel1.Location = new System.Drawing.Point(4, 3);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(150, 91);
+            this.panel1.Size = new System.Drawing.Size(150, 92);
             this.panel1.TabIndex = 0;
             // 
             // groupBox3
@@ -151,7 +166,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox3.Size = new System.Drawing.Size(150, 91);
+            this.groupBox3.Size = new System.Drawing.Size(150, 92);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Output";
@@ -191,7 +206,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox2.Size = new System.Drawing.Size(241, 91);
+            this.groupBox2.Size = new System.Drawing.Size(241, 92);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Files";
@@ -226,7 +241,7 @@
             this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox5.Size = new System.Drawing.Size(197, 91);
+            this.groupBox5.Size = new System.Drawing.Size(197, 92);
             this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Additional options";
@@ -255,7 +270,7 @@
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75.47169F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.5283F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(115, 119);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(115, 120);
             this.tableLayoutPanel6.TabIndex = 3;
             // 
             // btnExport
@@ -264,7 +279,7 @@
             this.btnExport.Location = new System.Drawing.Point(4, 3);
             this.btnExport.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(107, 83);
+            this.btnExport.Size = new System.Drawing.Size(107, 84);
             this.btnExport.TabIndex = 3;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
@@ -273,7 +288,7 @@
             // progressBar
             // 
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBar.Location = new System.Drawing.Point(4, 92);
+            this.progressBar.Location = new System.Drawing.Point(4, 93);
             this.progressBar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(107, 24);
@@ -284,32 +299,32 @@
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tabPages, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tabControlMain, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75.28302F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.71698F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(759, 530);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 78.67529F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.32472F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(759, 619);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // tabPages
+            // tabControlMain
             // 
-            this.tabPages.Controls.Add(this.tabTensile);
-            this.tabPages.Controls.Add(this.tabTear);
-            this.tabPages.Controls.Add(this.tabRebound);
-            this.tabPages.Controls.Add(this.tabHelp);
-            this.tabPages.Controls.Add(this.tabGraphs);
-            this.tabPages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabPages.Location = new System.Drawing.Point(4, 3);
-            this.tabPages.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPages.Name = "tabPages";
-            this.tabPages.SelectedIndex = 0;
-            this.tabPages.Size = new System.Drawing.Size(751, 393);
-            this.tabPages.TabIndex = 2;
+            this.tabControlMain.Controls.Add(this.tabTensile);
+            this.tabControlMain.Controls.Add(this.tabTear);
+            this.tabControlMain.Controls.Add(this.tabRebound);
+            this.tabControlMain.Controls.Add(this.tabHelp);
+            this.tabControlMain.Controls.Add(this.tabGraphs);
+            this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlMain.Location = new System.Drawing.Point(4, 3);
+            this.tabControlMain.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tabControlMain.Name = "tabControlMain";
+            this.tabControlMain.SelectedIndex = 0;
+            this.tabControlMain.Size = new System.Drawing.Size(751, 481);
+            this.tabControlMain.TabIndex = 2;
             // 
             // tabTensile
             // 
@@ -317,7 +332,7 @@
             this.tabTensile.Location = new System.Drawing.Point(4, 24);
             this.tabTensile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabTensile.Name = "tabTensile";
-            this.tabTensile.Size = new System.Drawing.Size(743, 365);
+            this.tabTensile.Size = new System.Drawing.Size(743, 453);
             this.tabTensile.TabIndex = 0;
             this.tabTensile.Text = "Tensile";
             this.tabTensile.UseVisualStyleBackColor = true;
@@ -335,7 +350,7 @@
             this.tableTensile.Name = "tableTensile";
             this.tableTensile.RowCount = 1;
             this.tableTensile.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableTensile.Size = new System.Drawing.Size(743, 365);
+            this.tableTensile.Size = new System.Drawing.Size(743, 453);
             this.tableTensile.TabIndex = 0;
             // 
             // panel2
@@ -343,7 +358,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(142, 359);
+            this.panel2.Size = new System.Drawing.Size(142, 447);
             this.panel2.TabIndex = 0;
             // 
             // tabTear
@@ -352,7 +367,7 @@
             this.tabTear.Location = new System.Drawing.Point(4, 24);
             this.tabTear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabTear.Name = "tabTear";
-            this.tabTear.Size = new System.Drawing.Size(743, 365);
+            this.tabTear.Size = new System.Drawing.Size(743, 453);
             this.tabTear.TabIndex = 1;
             this.tabTear.Text = "Tear";
             this.tabTear.UseVisualStyleBackColor = true;
@@ -370,7 +385,7 @@
             this.tableTear.Name = "tableTear";
             this.tableTear.RowCount = 1;
             this.tableTear.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableTear.Size = new System.Drawing.Size(743, 365);
+            this.tableTear.Size = new System.Drawing.Size(743, 453);
             this.tableTear.TabIndex = 1;
             // 
             // panel3
@@ -378,7 +393,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(142, 359);
+            this.panel3.Size = new System.Drawing.Size(142, 447);
             this.panel3.TabIndex = 0;
             // 
             // tabRebound
@@ -387,7 +402,7 @@
             this.tabRebound.Location = new System.Drawing.Point(4, 24);
             this.tabRebound.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabRebound.Name = "tabRebound";
-            this.tabRebound.Size = new System.Drawing.Size(743, 365);
+            this.tabRebound.Size = new System.Drawing.Size(743, 453);
             this.tabRebound.TabIndex = 2;
             this.tabRebound.Text = "Rebound";
             this.tabRebound.UseVisualStyleBackColor = true;
@@ -405,7 +420,7 @@
             this.tableRebound.Name = "tableRebound";
             this.tableRebound.RowCount = 1;
             this.tableRebound.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableRebound.Size = new System.Drawing.Size(743, 365);
+            this.tableRebound.Size = new System.Drawing.Size(743, 453);
             this.tableRebound.TabIndex = 2;
             // 
             // panel4
@@ -413,7 +428,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(3, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(142, 359);
+            this.panel4.Size = new System.Drawing.Size(142, 447);
             this.panel4.TabIndex = 0;
             // 
             // tabHelp
@@ -425,7 +440,7 @@
             this.tabHelp.Location = new System.Drawing.Point(4, 24);
             this.tabHelp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabHelp.Name = "tabHelp";
-            this.tabHelp.Size = new System.Drawing.Size(743, 365);
+            this.tabHelp.Size = new System.Drawing.Size(743, 453);
             this.tabHelp.TabIndex = 3;
             this.tabHelp.Text = "Help";
             this.tabHelp.UseVisualStyleBackColor = true;
@@ -481,7 +496,7 @@
             this.tabGraphs.Location = new System.Drawing.Point(4, 24);
             this.tabGraphs.Name = "tabGraphs";
             this.tabGraphs.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGraphs.Size = new System.Drawing.Size(743, 365);
+            this.tabGraphs.Size = new System.Drawing.Size(743, 453);
             this.tabGraphs.TabIndex = 4;
             this.tabGraphs.Text = "Graphs";
             this.tabGraphs.UseVisualStyleBackColor = true;
@@ -489,31 +504,128 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.13161F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.86839F));
-            this.tableLayoutPanel4.Controls.Add(this.panelGraph, 1, 0);
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel4.Controls.Add(this.tabControlGraph, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.panel5, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82.1727F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.8273F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(737, 359);
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 99.99999F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(737, 447);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
-            // panelGraph
+            // tabControlGraph
             // 
-            this.panelGraph.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelGraph.Location = new System.Drawing.Point(144, 3);
-            this.panelGraph.Name = "panelGraph";
-            this.panelGraph.Size = new System.Drawing.Size(590, 288);
-            this.panelGraph.TabIndex = 0;
+            this.tabControlGraph.Controls.Add(this.tabGraph);
+            this.tabControlGraph.Controls.Add(this.tabData);
+            this.tabControlGraph.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlGraph.Location = new System.Drawing.Point(150, 3);
+            this.tabControlGraph.Name = "tabControlGraph";
+            this.tabControlGraph.SelectedIndex = 0;
+            this.tabControlGraph.Size = new System.Drawing.Size(584, 441);
+            this.tabControlGraph.TabIndex = 1;
+            // 
+            // tabGraph
+            // 
+            this.tabGraph.Controls.Add(this.pictureGraph);
+            this.tabGraph.Location = new System.Drawing.Point(4, 24);
+            this.tabGraph.Name = "tabGraph";
+            this.tabGraph.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGraph.Size = new System.Drawing.Size(576, 413);
+            this.tabGraph.TabIndex = 0;
+            this.tabGraph.Text = "Graph";
+            this.tabGraph.UseVisualStyleBackColor = true;
+            // 
+            // pictureGraph
+            // 
+            this.pictureGraph.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureGraph.Location = new System.Drawing.Point(3, 3);
+            this.pictureGraph.Name = "pictureGraph";
+            this.pictureGraph.Size = new System.Drawing.Size(570, 407);
+            this.pictureGraph.TabIndex = 0;
+            this.pictureGraph.TabStop = false;
+            // 
+            // tabData
+            // 
+            this.tabData.Controls.Add(this.dataGridViewGraph);
+            this.tabData.Location = new System.Drawing.Point(4, 24);
+            this.tabData.Name = "tabData";
+            this.tabData.Padding = new System.Windows.Forms.Padding(3);
+            this.tabData.Size = new System.Drawing.Size(576, 413);
+            this.tabData.TabIndex = 1;
+            this.tabData.Text = "Data";
+            this.tabData.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewGraph
+            // 
+            this.dataGridViewGraph.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewGraph.ColumnHeadersVisible = false;
+            this.dataGridViewGraph.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewGraph.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewGraph.Name = "dataGridViewGraph";
+            this.dataGridViewGraph.RowTemplate.Height = 25;
+            this.dataGridViewGraph.Size = new System.Drawing.Size(570, 407);
+            this.dataGridViewGraph.TabIndex = 0;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.btnCombinations);
+            this.panel5.Controls.Add(this.btnSelectCategories);
+            this.panel5.Controls.Add(this.comboGraphSheet);
+            this.panel5.Controls.Add(this.btnSelectGraphFile);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(3, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(141, 441);
+            this.panel5.TabIndex = 2;
+            // 
+            // comboGraphSheet
+            // 
+            this.comboGraphSheet.Enabled = false;
+            this.comboGraphSheet.FormattingEnabled = true;
+            this.comboGraphSheet.Location = new System.Drawing.Point(2, 35);
+            this.comboGraphSheet.Name = "comboGraphSheet";
+            this.comboGraphSheet.Size = new System.Drawing.Size(135, 23);
+            this.comboGraphSheet.TabIndex = 1;
+            this.comboGraphSheet.SelectedIndexChanged += new System.EventHandler(this.comboGraphSheet_SelectedIndexChanged);
+            // 
+            // btnSelectGraphFile
+            // 
+            this.btnSelectGraphFile.Location = new System.Drawing.Point(2, 3);
+            this.btnSelectGraphFile.Name = "btnSelectGraphFile";
+            this.btnSelectGraphFile.Size = new System.Drawing.Size(135, 26);
+            this.btnSelectGraphFile.TabIndex = 0;
+            this.btnSelectGraphFile.Text = "Select data file";
+            this.btnSelectGraphFile.UseVisualStyleBackColor = true;
+            this.btnSelectGraphFile.Click += new System.EventHandler(this.btnSelectGraphFile_Click);
+            // 
+            // btnSelectCategories
+            // 
+            this.btnSelectCategories.Location = new System.Drawing.Point(3, 99);
+            this.btnSelectCategories.Name = "btnSelectCategories";
+            this.btnSelectCategories.Size = new System.Drawing.Size(135, 26);
+            this.btnSelectCategories.TabIndex = 2;
+            this.btnSelectCategories.Text = "Select categories";
+            this.btnSelectCategories.UseVisualStyleBackColor = true;
+            this.btnSelectCategories.Click += new System.EventHandler(this.btnSelectCategories_Click);
+            // 
+            // btnCombinations
+            // 
+            this.btnCombinations.Location = new System.Drawing.Point(3, 131);
+            this.btnCombinations.Name = "btnCombinations";
+            this.btnCombinations.Size = new System.Drawing.Size(135, 26);
+            this.btnCombinations.TabIndex = 3;
+            this.btnCombinations.Text = "Select combinations";
+            this.btnCombinations.UseVisualStyleBackColor = true;
+            this.btnCombinations.Click += new System.EventHandler(this.btnCombinations_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(759, 530);
+            this.ClientSize = new System.Drawing.Size(759, 619);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -532,7 +644,7 @@
             this.groupBox5.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tabPages.ResumeLayout(false);
+            this.tabControlMain.ResumeLayout(false);
             this.tabTensile.ResumeLayout(false);
             this.tableTensile.ResumeLayout(false);
             this.tabTear.ResumeLayout(false);
@@ -543,6 +655,12 @@
             this.tabHelp.PerformLayout();
             this.tabGraphs.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.tabControlGraph.ResumeLayout(false);
+            this.tabGraph.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureGraph)).EndInit();
+            this.tabData.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGraph)).EndInit();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -563,7 +681,7 @@
         private System.Windows.Forms.Button btnSelectInput;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.CheckBox checkRecursive;
-        private System.Windows.Forms.TabControl tabPages;
+        private System.Windows.Forms.TabControl tabControlMain;
         private System.Windows.Forms.TabPage tabTensile;
         private System.Windows.Forms.TabPage tabTear;
         private System.Windows.Forms.TableLayoutPanel tableTear;
@@ -582,7 +700,16 @@
         private LinkLabel linkGithub;
         private TabPage tabGraphs;
         private TableLayoutPanel tableLayoutPanel4;
-        private Panel panelGraph;
+        private PictureBox pictureGraph;
+        private TabControl tabControlGraph;
+        private TabPage tabGraph;
+        private TabPage tabData;
+        private DataGridView dataGridViewGraph;
+        private Panel panel5;
+        private Button btnSelectGraphFile;
+        private ComboBox comboGraphSheet;
+        private Button btnSelectCategories;
+        private Button btnCombinations;
     }
 }
 
