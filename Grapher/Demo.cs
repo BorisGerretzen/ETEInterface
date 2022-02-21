@@ -1,34 +1,36 @@
 ﻿using System.Drawing;
-using Grapher.Data;
-using OxyPlot;
-using OxyPlot.Series;
-using OxyPlot.WindowsForms;
+using ScottPlot;
 
-namespace Grapher {
-    public static class Demo {
-        public static Bitmap demo(DataLoader loader, GraphTemplate template) {
-            var myModel = new PlotModel { Title = "Example 1" };
-            var series = new ScatterErrorSeries();
-            var item = template.Items[0];
-            int indexWildcard = item.options1.IndexOf("*");
-            if (indexWildcard != -1) {
-                throw new ArgumentException("Template item does not contain a * category.");
-            }
+namespace Grapher; 
 
-            string nameWildcard = template.Categories[indexWildcard];
-            DataSelector selector = new DataSelector(loader);
-            var selectedData = selector.SelectData(item);
-            var options = loader.GetCategoryOptions()[nameWildcard];
+public static class Demo {
+    public static Bitmap demo(DataLoader loader, GraphTemplate template) {
+        var categoryFilters = template.Items[0].options1;
+        var results = loader.GetWithCategories(categoryFilters);
+        var axis = categoryFilters.Where(kvp => kvp.Value == "*").Select(kvp => kvp.Key).First();
+        var allOptions = loader.GetAllCategoryValues();
+        var xAxisList = allOptions[axis].ToList();
+        xAxisList.Sort();
 
-            foreach (var elem in selectedData) {
+        var plt = new Plot(900);
+        var xs = new double[results.Count];
+        var ys = new double[results.Count];
+        var yErrPos = new double[results.Count];
+        var yErrNeg = new double[results.Count];
 
-            }
-
-            myModel.Series.Add(new ScatterErrorSeries());
-            myModel.Series.Add(new FunctionSeries(Math.Cos, 0, 10, 0.1, "cos(x)"));
-            var pngExporter = new PngExporter { Width = 900, Height = 600 };
-            var bitmap = pngExporter.ExportToBitmap(myModel);
-            return bitmap;
+        var idx = 0;
+        foreach (var row in results) {
+            xs[idx] = xAxisList.IndexOf((string)row[axis]);
+            ys[idx] = (double)row["mean"];
+            yErrPos[idx] = (double)row["error top"];
+            yErrNeg[idx] = (double)row["error bottom"];
+            idx++;
         }
+
+        plt.AddScatter(xs, ys, Color.Blue, lineStyle: LineStyle.None);
+        plt.AddErrorBars(xs, ys, new double[results.Count], new double[results.Count], yErrPos, yErrNeg, Color.Blue);
+        plt.XTicks(xAxisList.ToArray());
+        var bitmap = plt.Render();
+        return bitmap;
     }
 }

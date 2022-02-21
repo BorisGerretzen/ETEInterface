@@ -6,7 +6,6 @@ using DataProcessing.DataProcessor;
 using DataProcessing.WinForms;
 using Grapher;
 using Grapher.Data;
-using OfficeOpenXml.ConditionalFormatting;
 
 namespace Interface;
 
@@ -14,17 +13,17 @@ public partial class FormMain : Form {
     // Normal processing
     private readonly OptionsPanelFactory.OptionsPanel optionsPanelTear;
     private readonly OptionsPanelFactory.OptionsPanel optionsPanelTensile;
+    private DataLoader _dataLoader;
+    private DataSet _dataSet;
     private string _inputDirectory = null!;
-    private string _outputFile = null!;
-    private Thread _worker = null!;
 
     // Graphs
     private string _inputFile;
     private List<DataLoader> _loaders = new();
-    private List<string> categoryHeaderNames = new();
-    private DataSet _dataSet;
-    private DataLoader _dataLoader;
+    private string _outputFile = null!;
     private GraphTemplate _template;
+    private Thread _worker = null!;
+    private List<string> categoryHeaderNames = new();
 
     public FormMain() {
         InitializeComponent();
@@ -40,7 +39,7 @@ public partial class FormMain : Form {
     }
 
     /// <summary>
-    /// Sets the progress bar to a set point
+    ///     Sets the progress bar to a set point
     /// </summary>
     /// <param name="amount">Point to set the progress bar to (0-1)</param>
     private void ProgressUpdate(double amount) {
@@ -49,21 +48,23 @@ public partial class FormMain : Form {
 
 
     private void btnExport_Click(object sender, EventArgs e) {
-        // Check if an export is already running
-        if (_worker != null && _worker.IsAlive) {
-            var dialogResult = MessageBox.Show("An export is already running, do you want to cancel it?", "Warning",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-            if (dialogResult != DialogResult.Yes) return;
+        if (tabControlMain.SelectedTab != tabGraphs) {
+            // Check if an export is already running
+            if (_worker != null && _worker.IsAlive) {
+                var dialogResult = MessageBox.Show("An export is already running, do you want to cancel it?", "Warning",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (dialogResult != DialogResult.Yes) return;
 
-            _worker.Abort();
-            Directory.Delete("temp", true);
-        }
+                _worker.Abort();
+                Directory.Delete("temp", true);
+            }
 
-        // Check if input and output paths are set
-        if (string.IsNullOrEmpty(_inputDirectory) || string.IsNullOrEmpty(_outputFile)) {
-            MessageBox.Show("Please specify an input directory and output file using the labeled buttons,", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
+            // Check if input and output paths are set
+            if (string.IsNullOrEmpty(_inputDirectory) || string.IsNullOrEmpty(_outputFile)) {
+                MessageBox.Show("Please specify an input directory and output file using the labeled buttons,", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
 
         // Tensile
@@ -146,10 +147,17 @@ public partial class FormMain : Form {
         Process.Start("explorer", linkGithub.Text);
     }
 
+    private void tabControlMain_SelectedIndexChanged(object sender, EventArgs e) {
+        if (tabControlMain.SelectedTab == tabGraphs)
+            groupExport.Enabled = false;
+        else
+            groupExport.Enabled = true;
+    }
+
     #region Graphs
 
     /// <summary>
-    /// Turns the control elements of the graph generator on and off.
+    ///     Turns the control elements of the graph generator on and off.
     /// </summary>
     /// <param name="state">On or off.</param>
     private void SetGraphControls(bool state) {
@@ -177,9 +185,7 @@ public partial class FormMain : Form {
 
                 // Add tables to combobox
                 foreach (DataTable? table in _dataSet.Tables) {
-                    if (table == null) {
-                        throw new Exception($"Read null sheet from {_inputFile}");
-                    }
+                    if (table == null) throw new Exception($"Read null sheet from {_inputFile}");
 
                     comboGraphSheet.Items.Add(table.TableName);
                 }
@@ -191,22 +197,21 @@ public partial class FormMain : Form {
     }
 
     private void comboGraphSheet_SelectedIndexChanged(object sender, EventArgs e) {
+        dataGridViewGraph.SelectionMode = DataGridViewSelectionMode.CellSelect;
         dataGridViewGraph.DataSource = _dataSet.Tables[(string)comboGraphSheet.SelectedItem];
+        foreach (DataGridViewColumn col in dataGridViewGraph.Columns) col.SortMode = DataGridViewColumnSortMode.NotSortable;
+
+        dataGridViewGraph.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
     }
 
 
     private void btnSelectCategories_Click(object sender, EventArgs e) {
-        // Get selected cells
-        var selected = dataGridViewGraph.SelectedCells;
-
-        // Get string values of cells and add to list
+        // Get string values of columns and add to list
         categoryHeaderNames = new List<string>();
-        foreach (DataGridViewCell? cell in selected) {
-            if (cell == null) {
-                continue;
-            }
+        foreach (DataGridViewColumn? col in dataGridViewGraph.SelectedColumns) {
+            if (col == null) continue;
 
-            categoryHeaderNames.Add((string)cell.Value);
+            categoryHeaderNames.Add(col.Name);
         }
 
         btnSelectCategories.Text = string.Join(", ", categoryHeaderNames);
@@ -218,29 +223,34 @@ public partial class FormMain : Form {
         _template.SheetName = (string)comboGraphSheet.SelectedItem;
     }
 
-    private void AddGraphComboResultCallback(List<string> options1, List<string> options2) {
+    /// <summary>
+    ///     Is called whenever FormAddGraph reports a new combination to be added to the list.
+    /// </summary>
+    /// <param name="options1"></param>
+    /// <param name="options2"></param>
+    private void AddGraphComboResultCallback(Dictionary<string, string> options1, Dictionary<string, string> options2) {
         _template.Add(options1, options2);
-        var categories = _dataLoader.GetCategoryOptions();
+        var categories = _dataLoader.GetAllCategoryValues();
         var formAddGraph = new FormAddGraph(categories, AddGraphComboResultCallback);
         formAddGraph.Show();
     }
 
     private void btnCombinations_Click(object sender, EventArgs e) {
-        var categories = _dataLoader.GetCategoryOptions();
+        var categories = _dataLoader.GetAllCategoryValues();
         var formAddGraph = new FormAddGraph(categories, AddGraphComboResultCallback);
         formAddGraph.Show();
     }
 
     private void btnLoadGraphTemplate_Click(object sender, EventArgs e) {
-        using (OpenFileDialog ofd = new OpenFileDialog()) {
+        using (var ofd = new OpenFileDialog()) {
             ofd.Filter = "JSON templates|*.json";
             ofd.InitialDirectory = Directory.GetCurrentDirectory() + "\\templates";
             var result = ofd.ShowDialog();
             if (result == DialogResult.OK) {
                 var stream = ofd.OpenFile();
                 var reader = new StreamReader(stream, Encoding.UTF8);
-                string json = reader.ReadToEnd();
-                GraphTemplate template = JsonSerializer.Deserialize<GraphTemplate>(json);
+                var json = reader.ReadToEnd();
+                var template = JsonSerializer.Deserialize<GraphTemplate>(json);
                 _template = template;
                 comboGraphSheet.SelectedItem = template.SheetName;
                 btnSelectCategories.Text = string.Join(", ", template.Categories);
@@ -251,23 +261,11 @@ public partial class FormMain : Form {
     }
 
     private void btnSaveGraphTemplate_Click(object sender, EventArgs e) {
-        if (!Directory.Exists("templates")) {
-            Directory.CreateDirectory("templates");
-        }
+        if (!Directory.Exists("templates")) Directory.CreateDirectory("templates");
 
         File.WriteAllText($"templates/{txtGraphExportFilename.Text}.json", JsonSerializer.Serialize(_template));
         MessageBox.Show($"Template '{txtGraphExportFilename.Text}' has been successfully exported.");
     }
 
     #endregion
-
-    private void tabControlMain_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (tabControlMain.SelectedTab == tabGraphs) {
-            groupExport.Enabled = false;
-        }
-        else {
-            groupExport.Enabled = true;
-        }
-    }
 }

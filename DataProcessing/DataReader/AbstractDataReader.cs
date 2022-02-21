@@ -13,7 +13,7 @@ internal abstract class AbstractDataReader {
     }
 
     /// <summary>
-    /// Reads the data from a file 
+    ///     Reads the data from a file
     /// </summary>
     /// <param name="sheetName">Name of the sheet to read from</param>
     /// <returns></returns>

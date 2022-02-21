@@ -1,11 +1,11 @@
 ﻿namespace DataProcessing.DataProcessor;
 
 public abstract class AbstractProcessor {
-    protected List<string> Headers;
     protected readonly string Directory;
     protected readonly bool Separate;
     protected Dictionary<string, bool> _headersActive;
     protected string Filter = null!;
+    protected List<string> Headers;
 
     protected AbstractProcessor(string directory, bool separate) {
         Directory = directory;
@@ -13,13 +13,13 @@ public abstract class AbstractProcessor {
     }
 
     /// <summary>
-    /// Processes the data in the input directory and writes the aggregated results to the output file.
+    ///     Processes the data in the input directory and writes the aggregated results to the output file.
     /// </summary>
     /// <param name="outputFile">File to write the data to.</param>
     public abstract void Process(string outputFile);
 
     /// <summary>
-    /// Gets a list of all possible headers.
+    ///     Gets a list of all possible headers.
     /// </summary>
     /// <returns></returns>
     public List<string> GetHeaders() {
@@ -27,7 +27,7 @@ public abstract class AbstractProcessor {
     }
 
     /// <summary>
-    /// Sets the list of possible headers
+    ///     Sets the list of possible headers
     /// </summary>
     /// <param name="headers"></param>
     protected void SetHeaders(List<string> headers) {
@@ -35,7 +35,7 @@ public abstract class AbstractProcessor {
     }
 
     /// <summary>
-    /// Sets the list of headers that need to appear in the output file.
+    ///     Sets the list of headers that need to appear in the output file.
     /// </summary>
     /// <param name="headers"></param>
     public void SetHeadersActive(Dictionary<string, bool> headers) {
@@ -43,7 +43,7 @@ public abstract class AbstractProcessor {
     }
 
     /// <summary>
-    /// Gets a list of indices that need to be removed from the data because they were not selected.
+    ///     Gets a list of indices that need to be removed from the data because they were not selected.
     /// </summary>
     /// <returns></returns>
     protected List<int> RemoveFromResults() {

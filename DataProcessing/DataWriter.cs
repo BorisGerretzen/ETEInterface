@@ -7,7 +7,7 @@ internal class DataWriter {
     private readonly List<string> _headers;
 
     /// <summary>
-    /// Creates a new datawriter.
+    ///     Creates a new datawriter.
     /// </summary>
     /// <param name="data">Data to be written, each row should be the same length as headers.</param>
     /// <param name="headers">The headers of the data.</param>
@@ -21,7 +21,7 @@ internal class DataWriter {
     }
 
     /// <summary>
-    /// Writes the headers to a file.
+    ///     Writes the headers to a file.
     /// </summary>
     /// <param name="sheet">Sheet to write to.</param>
     private void WriteHeaders(ExcelWorksheet sheet) {
@@ -30,7 +30,7 @@ internal class DataWriter {
     }
 
     /// <summary>
-    /// Writes a row to a file.
+    ///     Writes a row to a file.
     /// </summary>
     /// <param name="sheet">Sheet to write to.</param>
     /// <param name="row">Row number.</param>
@@ -40,9 +40,9 @@ internal class DataWriter {
         sheet.Cells[row, 1].Value = name;
         foreach (var i in Enumerable.Range(2, values.Count)) sheet.Cells[row, i].Value = values[i - 2];
     }
-    
+
     /// <summary>
-    /// Writes the stored data to a .xlsx file.
+    ///     Writes the stored data to a .xlsx file.
     /// </summary>
     /// <param name="file">Path to the .xlsx to write to.</param>
     /// <param name="sheetName">Name of the sheet to write to.</param>

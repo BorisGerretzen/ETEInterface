@@ -564,11 +564,11 @@
             // dataGridViewGraph
             // 
             this.dataGridViewGraph.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewGraph.ColumnHeadersVisible = false;
             this.dataGridViewGraph.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewGraph.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewGraph.Name = "dataGridViewGraph";
             this.dataGridViewGraph.RowTemplate.Height = 25;
+            this.dataGridViewGraph.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.ColumnHeaderSelect;
             this.dataGridViewGraph.Size = new System.Drawing.Size(570, 407);
             this.dataGridViewGraph.TabIndex = 0;
             // 

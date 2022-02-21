@@ -1,12 +1,11 @@
 ﻿namespace DataProcessing.WinForms;
 
 /// <summary>
-/// Factory to create OptionsPanels
+///     Factory to create OptionsPanels
 /// </summary>
 public class OptionsPanelFactory {
-
     /// <summary>
-    /// Method to create a new options panel from a list of headers.
+    ///     Method to create a new options panel from a list of headers.
     /// </summary>
     /// <param name="headers">List of headers to create checkboxes for</param>
     /// <param name="name">Name of the tab</param>
@@ -26,7 +25,7 @@ public class OptionsPanelFactory {
     }
 
     /// <summary>
-    /// Class to automate the generation of checkboxes for selecting the headers of a test
+    ///     Class to automate the generation of checkboxes for selecting the headers of a test
     /// </summary>
     public class OptionsPanel {
         private readonly Dictionary<string, CheckBox> _checkBoxes;
@@ -40,7 +39,7 @@ public class OptionsPanelFactory {
         }
 
         /// <summary>
-        /// Adds a new checkbox to the list
+        ///     Adds a new checkbox to the list
         /// </summary>
         /// <param name="header"></param>
         /// <param name="checkBox"></param>
@@ -52,7 +51,7 @@ public class OptionsPanelFactory {
         }
 
         /// <summary>
-        /// Gets the GroupBox which can be placed in the form
+        ///     Gets the GroupBox which can be placed in the form
         /// </summary>
         /// <returns></returns>
         public GroupBox GetPanel() {
@@ -60,7 +59,7 @@ public class OptionsPanelFactory {
         }
 
         /// <summary>
-        /// Gets the headers and the values for the corresponding checkboxes
+        ///     Gets the headers and the values for the corresponding checkboxes
         /// </summary>
         /// <returns></returns>
         public Dictionary<string, bool> GetCheckBoxes() {
