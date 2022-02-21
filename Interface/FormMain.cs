@@ -28,10 +28,6 @@ public partial class FormMain : Form {
 
     public FormMain() {
         InitializeComponent();
-        var bmp = Demo.demo();
-        pictureGraph.Image = bmp;
-        pictureGraph.SizeMode = PictureBoxSizeMode.Zoom;
-
         SetGraphControls(false);
 
         optionsPanelTensile = OptionsPanelFactory.GetOptionsPanel(TensileProcessor.Empty.GetHeaders(), "rebound");
@@ -95,6 +91,12 @@ public partial class FormMain : Form {
                 MessageBox.Show("Export complete");
             });
             _worker.Start();
+        }
+        // Graphs
+        else if (tabControlMain.SelectedTab == tabGraphs) {
+            var bmp = Demo.demo(_dataLoader, _template);
+            pictureGraph.Image = bmp;
+            pictureGraph.SizeMode = PictureBoxSizeMode.Zoom;
         }
     }
 
