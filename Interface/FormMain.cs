@@ -233,7 +233,13 @@ public partial class FormMain : Form {
     /// </summary>
     /// <param name="options1"></param>
     /// <param name="options2"></param>
-    private void AddGraphComboResultCallback(Dictionary<string, string> options1, Dictionary<string, string> options2) {
+    private void AddGraphComboResultCallback(Dictionary<string, string> options1, Dictionary<string, string> options2, string axis) {
+        if (!string.IsNullOrEmpty(_template.axis) && _template.axis != axis) {
+            MessageBox.Show($"Because you already created a graph in this template, '*' can only be chosen for category {axis}");
+            return;
+        }
+
+        _template.axis = axis;
         _template.Add(options1, options2);
         var categories = _dataLoader.GetAllCategoryValues();
         var formAddGraph = new FormAddGraph(categories, AddGraphComboResultCallback);

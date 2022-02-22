@@ -14,7 +14,7 @@ public class GraphTemplate {
 
     public List<string> Categories { get; set; }
     public List<GraphTemplateItem> Items { get; set; }
-
+    public string axis { get; set; }
     public void Add(GraphTemplateItem item) {
         Items.Add(item);
     }

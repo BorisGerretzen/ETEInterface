@@ -1,7 +1,7 @@
 ﻿namespace Interface;
 
 public partial class FormAddGraph : Form {
-    public delegate void ResultCallback(Dictionary<string, string> options1, Dictionary<string, string> options2);
+    public delegate void ResultCallback(Dictionary<string, string> options1, Dictionary<string, string> options2, string axis);
 
     private readonly ResultCallback _callback;
     private readonly List<string> categories;
@@ -64,15 +64,28 @@ public partial class FormAddGraph : Form {
     private void btnDone_Click(object sender, EventArgs e) {
         Dictionary<string, string> options1 = new();
         Dictionary<string, string> options2 = new();
-
+        string axis = String.Empty;
         foreach (var category in categories) {
             var option1 = (string)combos[$"{category}1"].SelectedItem;
             var option2 = (string)combos[$"{category}2"].SelectedItem;
-            options1[category] = option1;
-            options2[category] = option2;
+
+            if (option1 == "*" && option2 == "*") {
+                axis = category;
+            } else if (option1 == "*" || option2 == "*") {
+                MessageBox.Show("'*' must be in the same category for both series.");
+                return;
+            }
+            else {
+                options1[category] = option1;
+                options2[category] = option2;
+            }
         }
 
-        _callback(options1, options2);
+        if (axis == String.Empty) {
+            MessageBox.Show("No '*' found in any column.\r\n If you need help, there is a tutorial for the graphing utility on the github page, it can be found on the help page on the main menu.");
+            return;
+        }
+        _callback(options1, options2, axis);
         Close();
     }
 }

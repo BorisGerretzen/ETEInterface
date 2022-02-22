@@ -4,9 +4,8 @@ using ScottPlot;
 namespace Grapher;
 
 public static class Demo {
-    private static void AddSeries(ref Plot plot, Dictionary<string, string> filters, DataLoader loader, Color color) {
+    private static void AddSeries(ref Plot plot, Dictionary<string, string> filters, DataLoader loader, Color color, string axis) {
         var results = loader.GetWithCategories(filters);
-        var axis = filters.Where(kvp => kvp.Value == "*").Select(kvp => kvp.Key).First();
         var allOptions = loader.GetAllCategoryValues();
         var xAxisList = allOptions[axis].ToList();
         xAxisList.Sort();
@@ -30,16 +29,12 @@ public static class Demo {
     }
 
     public static Bitmap demo(DataLoader loader, GraphTemplate template) {
-        var categoryFilters1 = template.Items[0].options1;
-        var results = loader.GetWithCategories(categoryFilters1);
-        var axis = categoryFilters1.Where(kvp => kvp.Value == "*").Select(kvp => kvp.Key).First();
         var allOptions = loader.GetAllCategoryValues();
-        var xAxisList = allOptions[axis].ToList();
-        xAxisList.Sort();
+        var xAxisList = allOptions[template.axis].ToList();
 
         var plt = new Plot(900);
-        AddSeries(ref plt, template.Items[0].options1, loader, template.GraphLayout.color1);
-        AddSeries(ref plt, template.Items[0].options2, loader, template.GraphLayout.color2);
+        AddSeries(ref plt, template.Items[0].options1, loader, template.GraphLayout.color1, template.axis);
+        AddSeries(ref plt, template.Items[0].options2, loader, template.GraphLayout.color2, template.axis);
         plt.XTicks(xAxisList.ToArray());
         plt.XAxis.Label(template.GraphLayout.HeaderX);
         plt.YAxis.Label(template.GraphLayout.HeaderY);
