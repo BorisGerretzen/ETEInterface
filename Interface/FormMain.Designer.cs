@@ -330,8 +330,8 @@
             this.tabControlMain.Controls.Add(this.tabTensile);
             this.tabControlMain.Controls.Add(this.tabTear);
             this.tabControlMain.Controls.Add(this.tabRebound);
-            this.tabControlMain.Controls.Add(this.tabHelp);
             this.tabControlMain.Controls.Add(this.tabGraphs);
+            this.tabControlMain.Controls.Add(this.tabHelp);
             this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlMain.Location = new System.Drawing.Point(4, 3);
             this.tabControlMain.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
