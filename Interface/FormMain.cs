@@ -155,6 +155,10 @@ public partial class FormMain : Form {
             groupExport.Enabled = true;
     }
 
+    private void checkGraphLayoutLegend_CheckedChanged(object sender, EventArgs e) {
+        _template.GraphLayout.Legend = checkGraphLayoutLegend.Checked;
+    }
+
     #region Graphs
 
     /// <summary>

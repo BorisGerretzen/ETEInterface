@@ -32,6 +32,8 @@ public class GraphTemplate {
 
         public string HeaderX { get; set; }
         public string HeaderY { get; set; }
+
+        public bool Legend { get; set; }
     }
 
     public class GraphTemplateItem {

@@ -659,6 +659,7 @@
             this.checkGraphLayoutLegend.TabIndex = 4;
             this.checkGraphLayoutLegend.Text = "Show legend";
             this.checkGraphLayoutLegend.UseVisualStyleBackColor = true;
+            this.checkGraphLayoutLegend.CheckedChanged += new System.EventHandler(this.checkGraphLayoutLegend_CheckedChanged);
             // 
             // label4
             // 
