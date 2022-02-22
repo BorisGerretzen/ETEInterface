@@ -100,6 +100,7 @@ public partial class FormMain : Form {
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath)) {
                     var grapher = new ErrorBarGrapher(_dataLoader, _template);
                     grapher.GenerateAll(fbd.SelectedPath);
+                    MessageBox.Show("Image export complete.");
                 }
             }
         }
