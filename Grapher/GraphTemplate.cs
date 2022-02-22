@@ -1,11 +1,17 @@
-﻿namespace Grapher; 
+﻿using System.Drawing;
+
+namespace Grapher;
 
 public class GraphTemplate {
     public GraphTemplate() {
         Items = new List<GraphTemplateItem>();
+        GraphLayout = new GraphLayoutTemplate();
     }
 
+    public GraphLayoutTemplate GraphLayout { get; set; }
+
     public string SheetName { get; set; }
+
     public List<string> Categories { get; set; }
     public List<GraphTemplateItem> Items { get; set; }
 
@@ -18,6 +24,14 @@ public class GraphTemplate {
         item.options1 = options1;
         item.options2 = options2;
         Add(item);
+    }
+
+    public class GraphLayoutTemplate {
+        public Color color1 { get; set; }
+        public Color color2 { get; set; }
+
+        public string HeaderX { get; set; }
+        public string HeaderY { get; set; }
     }
 
     public class GraphTemplateItem {

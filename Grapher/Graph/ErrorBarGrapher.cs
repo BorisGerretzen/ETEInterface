@@ -1,4 +1,4 @@
-﻿namespace Grapher.Graph; 
+﻿namespace Grapher.Graph;
 
 public class ErrorBarGrapher {
     private DataLoader _loader;

@@ -2,7 +2,7 @@
 using System.Text;
 using ExcelDataReader;
 
-namespace Grapher.Data; 
+namespace Grapher.Data;
 
 public static class DataLoaderFactory {
     /// <summary>

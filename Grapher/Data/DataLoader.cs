@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace Grapher; 
+namespace Grapher;
 
 public class DataLoader {
     /// <summary>

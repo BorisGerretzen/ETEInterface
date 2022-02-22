@@ -1,4 +1,4 @@
-﻿namespace Interface; 
+﻿namespace Interface;
 
 public partial class FormAddGraph : Form {
     public delegate void ResultCallback(Dictionary<string, string> options1, Dictionary<string, string> options2);

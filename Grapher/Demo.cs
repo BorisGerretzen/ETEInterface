@@ -1,13 +1,13 @@
 ﻿using System.Drawing;
 using ScottPlot;
 
-namespace Grapher; 
+namespace Grapher;
 
 public static class Demo {
     public static Bitmap demo(DataLoader loader, GraphTemplate template) {
-        var categoryFilters = template.Items[0].options1;
-        var results = loader.GetWithCategories(categoryFilters);
-        var axis = categoryFilters.Where(kvp => kvp.Value == "*").Select(kvp => kvp.Key).First();
+        var categoryFilters1 = template.Items[0].options1;
+        var results = loader.GetWithCategories(categoryFilters1);
+        var axis = categoryFilters1.Where(kvp => kvp.Value == "*").Select(kvp => kvp.Key).First();
         var allOptions = loader.GetAllCategoryValues();
         var xAxisList = allOptions[axis].ToList();
         xAxisList.Sort();
@@ -27,9 +27,12 @@ public static class Demo {
             idx++;
         }
 
-        plt.AddScatter(xs, ys, Color.Blue, lineStyle: LineStyle.None);
-        plt.AddErrorBars(xs, ys, new double[results.Count], new double[results.Count], yErrPos, yErrNeg, Color.Blue);
+        plt.AddScatter(xs, ys, template.GraphLayout.color1, lineStyle: LineStyle.None);
+        plt.AddErrorBars(xs, ys, new double[results.Count], new double[results.Count], yErrPos, yErrNeg, template.GraphLayout.color1);
         plt.XTicks(xAxisList.ToArray());
+        plt.XAxis.Label(template.GraphLayout.HeaderX);
+        plt.YAxis.Label(template.GraphLayout.HeaderY);
+        plt.XAxis.Grid(false);
         var bitmap = plt.Render();
         return bitmap;
     }

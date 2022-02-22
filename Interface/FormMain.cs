@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using DataProcessing.DataProcessor;
 using DataProcessing.WinForms;
 using Grapher;
@@ -265,6 +266,47 @@ public partial class FormMain : Form {
 
         File.WriteAllText($"templates/{txtGraphExportFilename.Text}.json", JsonSerializer.Serialize(_template));
         MessageBox.Show($"Template '{txtGraphExportFilename.Text}' has been successfully exported.");
+    }
+
+
+    private void txtGraphHeaderX_TextChanged(object sender, EventArgs e) {
+        _template.GraphLayout.HeaderX = txtGraphHeaderX.Text;
+    }
+
+    private void txtGraphHeaderY_TextChanged(object sender, EventArgs e) {
+        _template.GraphLayout.HeaderY = txtGraphHeaderY.Text;
+    }
+
+    private bool CheckHexValid(string hex) {
+        return Regex.Match(hex, "^#[a-fA-F0-9]{6}$").Success;
+    }
+
+    private void txtGraphLayoutColor1_TextChanged(object sender, EventArgs e) {
+        if (CheckHexValid(txtGraphLayoutColor1.Text)) {
+            labelGraphLayoutColor1Incorrect.Visible = false;
+            _template.GraphLayout.color1 = ColorTranslator.FromHtml(txtGraphLayoutColor1.Text);
+        }
+        else {
+            labelGraphLayoutColor1Incorrect.Visible = true;
+        }
+    }
+
+    private void txtGraphLayoutColor2_TextChanged(object sender, EventArgs e) {
+        if (CheckHexValid(txtGraphLayoutColor2.Text)) {
+            labelGraphLayoutColor2Incorrect.Visible = false;
+            _template.GraphLayout.color2 = ColorTranslator.FromHtml(txtGraphLayoutColor2.Text);
+        }
+        else {
+            labelGraphLayoutColor2Incorrect.Visible = true;
+        }
+    }
+
+    private void tabControlGraph_SelectedIndexChanged(object sender, EventArgs e) {
+        if (tabControlGraph.SelectedTab == tabGraph) {
+            var bmp = Demo.demo(_dataLoader, _template);
+            pictureGraph.Image = bmp;
+            pictureGraph.SizeMode = PictureBoxSizeMode.Zoom;
+        }
     }
 
     #endregion

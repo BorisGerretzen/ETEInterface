@@ -63,10 +63,21 @@
             this.tabGraphs = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControlGraph = new System.Windows.Forms.TabControl();
-            this.tabGraph = new System.Windows.Forms.TabPage();
-            this.pictureGraph = new System.Windows.Forms.PictureBox();
             this.tabData = new System.Windows.Forms.TabPage();
             this.dataGridViewGraph = new System.Windows.Forms.DataGridView();
+            this.tabLayout = new System.Windows.Forms.TabPage();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.labelGraphLayoutColor2Incorrect = new System.Windows.Forms.Label();
+            this.labelGraphLayoutColor1Incorrect = new System.Windows.Forms.Label();
+            this.txtGraphHeaderY = new System.Windows.Forms.TextBox();
+            this.txtGraphLayoutColor2 = new System.Windows.Forms.TextBox();
+            this.txtGraphHeaderX = new System.Windows.Forms.TextBox();
+            this.txtGraphLayoutColor1 = new System.Windows.Forms.TextBox();
+            this.checkGraphLayoutLegend = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tabGraph = new System.Windows.Forms.TabPage();
+            this.pictureGraph = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.txtGraphExportFilename = new System.Windows.Forms.TextBox();
             this.btnSaveGraphTemplate = new System.Windows.Forms.Button();
@@ -95,10 +106,12 @@
             this.tabGraphs.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tabControlGraph.SuspendLayout();
-            this.tabGraph.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureGraph)).BeginInit();
             this.tabData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGraph)).BeginInit();
+            this.tabLayout.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.tabGraph.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureGraph)).BeginInit();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -176,6 +189,7 @@
             // radioSheet
             // 
             this.radioSheet.AutoSize = true;
+            this.radioSheet.Checked = true;
             this.radioSheet.Location = new System.Drawing.Point(7, 48);
             this.radioSheet.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.radioSheet.Name = "radioSheet";
@@ -188,13 +202,11 @@
             // radioSeparate
             // 
             this.radioSeparate.AutoSize = true;
-            this.radioSeparate.Checked = true;
             this.radioSeparate.Location = new System.Drawing.Point(7, 22);
             this.radioSeparate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.radioSeparate.Name = "radioSeparate";
             this.radioSeparate.Size = new System.Drawing.Size(78, 19);
             this.radioSeparate.TabIndex = 2;
-            this.radioSeparate.TabStop = true;
             this.radioSeparate.Text = "Create file";
             this.radioSeparate.UseVisualStyleBackColor = true;
             this.radioSeparate.CheckedChanged += new System.EventHandler(this.radioSeparate_CheckedChanged);
@@ -521,34 +533,16 @@
             // 
             // tabControlGraph
             // 
-            this.tabControlGraph.Controls.Add(this.tabGraph);
             this.tabControlGraph.Controls.Add(this.tabData);
+            this.tabControlGraph.Controls.Add(this.tabLayout);
+            this.tabControlGraph.Controls.Add(this.tabGraph);
             this.tabControlGraph.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlGraph.Location = new System.Drawing.Point(150, 3);
             this.tabControlGraph.Name = "tabControlGraph";
             this.tabControlGraph.SelectedIndex = 0;
             this.tabControlGraph.Size = new System.Drawing.Size(584, 441);
             this.tabControlGraph.TabIndex = 1;
-            // 
-            // tabGraph
-            // 
-            this.tabGraph.Controls.Add(this.pictureGraph);
-            this.tabGraph.Location = new System.Drawing.Point(4, 24);
-            this.tabGraph.Name = "tabGraph";
-            this.tabGraph.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGraph.Size = new System.Drawing.Size(576, 413);
-            this.tabGraph.TabIndex = 0;
-            this.tabGraph.Text = "Graph";
-            this.tabGraph.UseVisualStyleBackColor = true;
-            // 
-            // pictureGraph
-            // 
-            this.pictureGraph.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureGraph.Location = new System.Drawing.Point(3, 3);
-            this.pictureGraph.Name = "pictureGraph";
-            this.pictureGraph.Size = new System.Drawing.Size(570, 407);
-            this.pictureGraph.TabIndex = 0;
-            this.pictureGraph.TabStop = false;
+            this.tabControlGraph.SelectedIndexChanged += new System.EventHandler(this.tabControlGraph_SelectedIndexChanged);
             // 
             // tabData
             // 
@@ -571,6 +565,138 @@
             this.dataGridViewGraph.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.ColumnHeaderSelect;
             this.dataGridViewGraph.Size = new System.Drawing.Size(570, 407);
             this.dataGridViewGraph.TabIndex = 0;
+            // 
+            // tabLayout
+            // 
+            this.tabLayout.Controls.Add(this.panel6);
+            this.tabLayout.Location = new System.Drawing.Point(4, 24);
+            this.tabLayout.Name = "tabLayout";
+            this.tabLayout.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLayout.Size = new System.Drawing.Size(576, 413);
+            this.tabLayout.TabIndex = 2;
+            this.tabLayout.Text = "Layout";
+            this.tabLayout.UseVisualStyleBackColor = true;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.labelGraphLayoutColor2Incorrect);
+            this.panel6.Controls.Add(this.labelGraphLayoutColor1Incorrect);
+            this.panel6.Controls.Add(this.txtGraphHeaderY);
+            this.panel6.Controls.Add(this.txtGraphLayoutColor2);
+            this.panel6.Controls.Add(this.txtGraphHeaderX);
+            this.panel6.Controls.Add(this.txtGraphLayoutColor1);
+            this.panel6.Controls.Add(this.checkGraphLayoutLegend);
+            this.panel6.Controls.Add(this.label4);
+            this.panel6.Controls.Add(this.label3);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(3, 3);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(570, 407);
+            this.panel6.TabIndex = 0;
+            // 
+            // labelGraphLayoutColor2Incorrect
+            // 
+            this.labelGraphLayoutColor2Incorrect.AutoSize = true;
+            this.labelGraphLayoutColor2Incorrect.ForeColor = System.Drawing.Color.Red;
+            this.labelGraphLayoutColor2Incorrect.Location = new System.Drawing.Point(163, 43);
+            this.labelGraphLayoutColor2Incorrect.Name = "labelGraphLayoutColor2Incorrect";
+            this.labelGraphLayoutColor2Incorrect.Size = new System.Drawing.Size(259, 15);
+            this.labelGraphLayoutColor2Incorrect.TabIndex = 10;
+            this.labelGraphLayoutColor2Incorrect.Text = "Incorrect format, please google hex color picker";
+            // 
+            // labelGraphLayoutColor1Incorrect
+            // 
+            this.labelGraphLayoutColor1Incorrect.AutoSize = true;
+            this.labelGraphLayoutColor1Incorrect.ForeColor = System.Drawing.Color.Red;
+            this.labelGraphLayoutColor1Incorrect.Location = new System.Drawing.Point(163, 11);
+            this.labelGraphLayoutColor1Incorrect.Name = "labelGraphLayoutColor1Incorrect";
+            this.labelGraphLayoutColor1Incorrect.Size = new System.Drawing.Size(259, 15);
+            this.labelGraphLayoutColor1Incorrect.TabIndex = 9;
+            this.labelGraphLayoutColor1Incorrect.Text = "Incorrect format, please google hex color picker";
+            // 
+            // txtGraphHeaderY
+            // 
+            this.txtGraphHeaderY.Location = new System.Drawing.Point(6, 139);
+            this.txtGraphHeaderY.Name = "txtGraphHeaderY";
+            this.txtGraphHeaderY.PlaceholderText = "Y axis text";
+            this.txtGraphHeaderY.Size = new System.Drawing.Size(134, 23);
+            this.txtGraphHeaderY.TabIndex = 8;
+            this.txtGraphHeaderY.TextChanged += new System.EventHandler(this.txtGraphHeaderY_TextChanged);
+            // 
+            // txtGraphLayoutColor2
+            // 
+            this.txtGraphLayoutColor2.Location = new System.Drawing.Point(57, 40);
+            this.txtGraphLayoutColor2.Name = "txtGraphLayoutColor2";
+            this.txtGraphLayoutColor2.PlaceholderText = "#123456";
+            this.txtGraphLayoutColor2.Size = new System.Drawing.Size(100, 23);
+            this.txtGraphLayoutColor2.TabIndex = 6;
+            this.txtGraphLayoutColor2.TextChanged += new System.EventHandler(this.txtGraphLayoutColor2_TextChanged);
+            // 
+            // txtGraphHeaderX
+            // 
+            this.txtGraphHeaderX.Location = new System.Drawing.Point(6, 110);
+            this.txtGraphHeaderX.Name = "txtGraphHeaderX";
+            this.txtGraphHeaderX.PlaceholderText = "X axis text";
+            this.txtGraphHeaderX.Size = new System.Drawing.Size(134, 23);
+            this.txtGraphHeaderX.TabIndex = 7;
+            this.txtGraphHeaderX.TextChanged += new System.EventHandler(this.txtGraphHeaderX_TextChanged);
+            // 
+            // txtGraphLayoutColor1
+            // 
+            this.txtGraphLayoutColor1.Location = new System.Drawing.Point(57, 8);
+            this.txtGraphLayoutColor1.Name = "txtGraphLayoutColor1";
+            this.txtGraphLayoutColor1.PlaceholderText = "#123456";
+            this.txtGraphLayoutColor1.Size = new System.Drawing.Size(100, 23);
+            this.txtGraphLayoutColor1.TabIndex = 5;
+            this.txtGraphLayoutColor1.TextChanged += new System.EventHandler(this.txtGraphLayoutColor1_TextChanged);
+            // 
+            // checkGraphLayoutLegend
+            // 
+            this.checkGraphLayoutLegend.AutoSize = true;
+            this.checkGraphLayoutLegend.Location = new System.Drawing.Point(6, 185);
+            this.checkGraphLayoutLegend.Name = "checkGraphLayoutLegend";
+            this.checkGraphLayoutLegend.Size = new System.Drawing.Size(94, 19);
+            this.checkGraphLayoutLegend.TabIndex = 4;
+            this.checkGraphLayoutLegend.Text = "Show legend";
+            this.checkGraphLayoutLegend.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 43);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 15);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Color 2:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 15);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Color 1:";
+            // 
+            // tabGraph
+            // 
+            this.tabGraph.Controls.Add(this.pictureGraph);
+            this.tabGraph.Location = new System.Drawing.Point(4, 24);
+            this.tabGraph.Name = "tabGraph";
+            this.tabGraph.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGraph.Size = new System.Drawing.Size(576, 413);
+            this.tabGraph.TabIndex = 0;
+            this.tabGraph.Text = "Graph";
+            this.tabGraph.UseVisualStyleBackColor = true;
+            // 
+            // pictureGraph
+            // 
+            this.pictureGraph.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureGraph.Location = new System.Drawing.Point(3, 3);
+            this.pictureGraph.Name = "pictureGraph";
+            this.pictureGraph.Size = new System.Drawing.Size(570, 407);
+            this.pictureGraph.TabIndex = 0;
+            this.pictureGraph.TabStop = false;
             // 
             // panel5
             // 
@@ -690,10 +816,13 @@
             this.tabGraphs.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tabControlGraph.ResumeLayout(false);
-            this.tabGraph.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureGraph)).EndInit();
             this.tabData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGraph)).EndInit();
+            this.tabLayout.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.tabGraph.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureGraph)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.ResumeLayout(false);
@@ -748,6 +877,17 @@
         private Button btnSaveGraphTemplate;
         private Button btnLoadGraphTemplate;
         private TextBox txtGraphExportFilename;
+        private TextBox txtGraphHeaderY;
+        private TextBox txtGraphHeaderX;
+        private TabPage tabLayout;
+        private Panel panel6;
+        private Label label4;
+        private Label label3;
+        private CheckBox checkGraphLayoutLegend;
+        private TextBox txtGraphLayoutColor2;
+        private TextBox txtGraphLayoutColor1;
+        private Label labelGraphLayoutColor2Incorrect;
+        private Label labelGraphLayoutColor1Incorrect;
     }
 }
 
