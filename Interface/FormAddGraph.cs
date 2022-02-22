@@ -1,7 +1,13 @@
 ﻿namespace Interface;
 
 public partial class FormAddGraph : Form {
-    public delegate void ResultCallback(Dictionary<string, string> options1, Dictionary<string, string> options2, string axis);
+    /// <summary>
+    ///     Delegate type that gets called whenever this form reports a new combination to be added.
+    /// </summary>
+    /// <param name="filters1">Filters for the first series in the graph.</param>
+    /// <param name="filters2">Filters for the second series in the graph.</param>
+    /// <param name="axis">Name of category that should be placed on the x axis.</param>
+    public delegate void ResultCallback(Dictionary<string, string> filters1, Dictionary<string, string> filters2, string axis);
 
     private readonly ResultCallback _callback;
     private readonly List<string> categories;
@@ -64,27 +70,33 @@ public partial class FormAddGraph : Form {
     private void btnDone_Click(object sender, EventArgs e) {
         Dictionary<string, string> options1 = new();
         Dictionary<string, string> options2 = new();
-        string axis = String.Empty;
+        var axis = string.Empty;
         foreach (var category in categories) {
             var option1 = (string)combos[$"{category}1"].SelectedItem;
             var option2 = (string)combos[$"{category}2"].SelectedItem;
 
+            // If both options are * it is the axis
             if (option1 == "*" && option2 == "*") {
                 axis = category;
-            } else if (option1 == "*" || option2 == "*") {
+            }
+            // If only one is * we have a problem
+            else if (option1 == "*" || option2 == "*") {
                 MessageBox.Show("'*' must be in the same category for both series.");
                 return;
             }
+            // If none are * just add it to filters
             else {
                 options1[category] = option1;
                 options2[category] = option2;
             }
         }
 
-        if (axis == String.Empty) {
+        // If there is no axis found show a message.
+        if (axis == string.Empty) {
             MessageBox.Show("No '*' found in any column.\r\n If you need help, there is a tutorial for the graphing utility on the github page, it can be found on the help page on the main menu.");
             return;
         }
+
         _callback(options1, options2, axis);
         Close();
     }

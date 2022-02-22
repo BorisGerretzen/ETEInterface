@@ -621,7 +621,6 @@
             this.txtGraphHeaderY.PlaceholderText = "Y axis text";
             this.txtGraphHeaderY.Size = new System.Drawing.Size(134, 23);
             this.txtGraphHeaderY.TabIndex = 8;
-            this.txtGraphHeaderY.TextChanged += new System.EventHandler(this.txtGraphHeaderY_TextChanged);
             // 
             // txtGraphLayoutColor2
             // 
@@ -639,7 +638,6 @@
             this.txtGraphHeaderX.PlaceholderText = "X axis text";
             this.txtGraphHeaderX.Size = new System.Drawing.Size(134, 23);
             this.txtGraphHeaderX.TabIndex = 7;
-            this.txtGraphHeaderX.TextChanged += new System.EventHandler(this.txtGraphHeaderX_TextChanged);
             // 
             // txtGraphLayoutColor1
             // 
@@ -659,7 +657,6 @@
             this.checkGraphLayoutLegend.TabIndex = 4;
             this.checkGraphLayoutLegend.Text = "Show legend";
             this.checkGraphLayoutLegend.UseVisualStyleBackColor = true;
-            this.checkGraphLayoutLegend.CheckedChanged += new System.EventHandler(this.checkGraphLayoutLegend_CheckedChanged);
             // 
             // label4
             // 
