@@ -25,7 +25,7 @@ public class DataLoader {
         _categoryHeaderNames = categoryHeaderNames;
         _categoryOptions = _categoryHeaderNames.ToDictionary(name => name, GetCategoryValues);
     }
-    //test
+
     /// <summary>
     ///     Gets a list of all rows where the values in the given categories match the given values.
     /// </summary>

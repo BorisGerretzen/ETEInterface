@@ -5,8 +5,8 @@ namespace Grapher.Graph;
 
 public class ErrorBarGrapher {
     private readonly DataLoader _loader;
-    private Plot _plot;
     private readonly GraphTemplate _template;
+    private Plot _plot;
 
     /// <summary>
     ///     X axis labels.
@@ -16,13 +16,34 @@ public class ErrorBarGrapher {
     public ErrorBarGrapher(DataLoader loader, GraphTemplate template) {
         _loader = loader;
         _template = template;
-        GeneratePlot();
+        GeneratePlot(0);
+    }
+
+    /// <summary>
+    ///     Generates all graphs in the supplied GraphTemplate and exports them to the specified output directory.
+    /// </summary>
+    /// <param name="outputDirectory">The directory where all the exported images will be placed.</param>
+    public void GenerateAll(string outputDirectory) {
+        foreach (var i in Enumerable.Range(0, _template.Items.Count)) {
+            GeneratePlot(i);
+            var ouputPath = Path.Join(outputDirectory, $"{i}.png");
+            _plot.SaveFig(ouputPath);
+        }
+    }
+
+    /// <summary>
+    ///     Gets a bitmap from the first combination in the template.
+    /// </summary>
+    /// <returns></returns>
+    public Bitmap GetFirst() {
+        GeneratePlot(0);
+        return GetBitmap();
     }
 
     /// <summary>
     ///     Generates the ScottPlot Plot using the GraphTemplate provided.
     /// </summary>
-    private void GeneratePlot() {
+    private void GeneratePlot(int idx) {
         // Gets all options for the axis specified in the template and sorts them
         var allOptions = _loader.GetAllCategoryValues();
         _xAxis = allOptions[_template.axis].ToList();
@@ -30,8 +51,8 @@ public class ErrorBarGrapher {
 
         // Create plot and add series
         _plot = new Plot();
-        AddSeries(_template.Items[0].options1, _template.GraphLayout.color1);
-        AddSeries(_template.Items[0].options2, _template.GraphLayout.color2);
+        AddSeries(_template.Items[idx].options1, _template.GraphLayout.color1);
+        AddSeries(_template.Items[idx].options2, _template.GraphLayout.color2);
 
         // Add ticks, headers, grid, etc.
         _plot.XTicks(_xAxis.ToArray());
@@ -75,7 +96,7 @@ public class ErrorBarGrapher {
     ///     Exports the current plot as bitmap.
     /// </summary>
     /// <returns>Bitmap export of this plot.</returns>
-    public Bitmap GetBitmap() {
+    private Bitmap GetBitmap() {
         return _plot.Render();
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System.Drawing;
+using Grapher.Graph;
+using ScottPlot;
 
 namespace Grapher;
 
@@ -25,6 +27,12 @@ public class GraphTemplate {
         item.options1 = options1;
         item.options2 = options2;
         Add(item);
+    }
+
+    public void Export(DataSet ds, DataLoader dl, string exportDirectory) {
+        foreach (var item in Items) {
+            var grapher = new ErrorBarGrapher(dl, this);
+        }
     }
 
     public class GraphLayoutTemplate {

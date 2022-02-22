@@ -93,7 +93,15 @@ public partial class FormMain : Form {
         }
         // Graphs
         else if (tabControlMain.SelectedTab == tabGraphs) {
-            GenerateGraph();
+            if (!CanExport()) return;
+            using (var fbd = new FolderBrowserDialog()) {
+                fbd.SelectedPath = Directory.GetCurrentDirectory();
+                var result = fbd.ShowDialog();
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath)) {
+                    var grapher = new ErrorBarGrapher(_dataLoader, _template);
+                    grapher.GenerateAll(fbd.SelectedPath);
+                }
+            }
         }
     }
 
@@ -266,6 +274,7 @@ public partial class FormMain : Form {
                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
+
         foreach (DataGridViewColumn? col in dataGridViewGraph.SelectedColumns) {
             if (col == null) continue;
 
@@ -390,6 +399,24 @@ public partial class FormMain : Form {
         }
     }
 
+    private bool CanExport() {
+        if (_template == null || _dataLoader == null) {
+            MessageBox.Show(
+                "Cannot show graph without selecting categories first.\nHint: hold the control button on your keyboard and select your category columns, then press the 'Select categories' button.",
+                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return false;
+        }
+
+        if (string.IsNullOrEmpty(_template.axis)) {
+            MessageBox.Show(
+                "Cannot show graph without any combinations.\nHint: Press the 'Select combinations' button to add new combinations, leave one category on '*' for both samples, this will be the variable on the x axis.",
+                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return false;
+        }
+
+        return true;
+    }
+
     /// <summary>
     ///     Called whenever the graph tabcontrol changes tabs.
     ///     Renders the graph whenever the graph tab is selected.
@@ -398,19 +425,7 @@ public partial class FormMain : Form {
     /// <param name="e"></param>
     private void tabControlGraph_SelectedIndexChanged(object sender, EventArgs e) {
         if (tabControlGraph.SelectedTab == tabGraph) {
-            if (_template == null || _dataLoader == null) {
-                MessageBox.Show(
-                    "Cannot show graph without selecting categories first.\nHint: hold the control button on your keyboard and select your category columns, then press the 'Select categories' button.",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (string.IsNullOrEmpty(_template.axis)) {
-                MessageBox.Show(
-                    "Cannot show graph without any combinations.\nHint: Press the 'Select combinations' button to add new combinations, leave one category on '*' for both samples, this will be the variable on the x axis.",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            if (!CanExport()) return;
 
             GenerateGraph();
         }
@@ -427,7 +442,7 @@ public partial class FormMain : Form {
         _template.GraphLayout.color2 = ColorTranslator.FromHtml(txtGraphLayoutColor2.Text);
 
         var grapher = new ErrorBarGrapher(_dataLoader, _template);
-        pictureGraph.Image = grapher.GetBitmap();
+        pictureGraph.Image = grapher.GetFirst();
         pictureGraph.SizeMode = PictureBoxSizeMode.Zoom;
     }
 
