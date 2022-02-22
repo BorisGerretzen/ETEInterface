@@ -1,20 +1,19 @@
 ﻿using System.Data;
 using System.Diagnostics;
 using System.Text;
-using System.Text.Json;
 using System.Text.RegularExpressions;
 using DataProcessing.DataProcessor;
 using DataProcessing.WinForms;
 using Grapher;
 using Grapher.Data;
 using Grapher.Graph;
+using Newtonsoft.Json;
 
 namespace Interface;
 
 public partial class FormMain : Form {
     private readonly OptionsPanelFactory.OptionsPanel _optionsPanelTear;
     private readonly OptionsPanelFactory.OptionsPanel _optionsPanelTensile;
-    private List<string> _categoryHeaderNames = new();
     private DataLoader _dataLoader;
     private DataSet _dataSet;
     private string _inputDirectory = null!;
@@ -250,19 +249,16 @@ public partial class FormMain : Form {
     /// <param name="e"></param>
     private void btnSelectCategories_Click(object sender, EventArgs e) {
         // Get string values of columns and add to list
-        _categoryHeaderNames = new List<string>();
+        _template = new GraphTemplate();
+        _template.Categories = new List<string>();
         foreach (DataGridViewColumn? col in dataGridViewGraph.SelectedColumns) {
             if (col == null) continue;
 
-            _categoryHeaderNames.Add(col.Name);
+            _template.Categories.Add(col.Name);
         }
 
-        btnSelectCategories.Text = string.Join(", ", _categoryHeaderNames);
-
-        // Create data loader
-        _dataLoader = new DataLoader(_dataSet.Tables[(string)comboGraphSheet.SelectedItem], _categoryHeaderNames);
-        _template = new GraphTemplate();
-        _template.Categories = _categoryHeaderNames;
+        btnSelectCategories.Text = string.Join(", ", _template.Categories);
+        _dataLoader = new DataLoader(_dataSet.Tables[(string)comboGraphSheet.SelectedItem], _template.Categories);
         _template.SheetName = (string)comboGraphSheet.SelectedItem;
     }
 
@@ -312,11 +308,12 @@ public partial class FormMain : Form {
                 var stream = ofd.OpenFile();
                 var reader = new StreamReader(stream, Encoding.UTF8);
                 var json = reader.ReadToEnd();
-                var template = JsonSerializer.Deserialize<GraphTemplate>(json);
+                var template = JsonConvert.DeserializeObject<GraphTemplate>(json);
                 _template = template;
                 comboGraphSheet.SelectedItem = template.SheetName;
                 btnSelectCategories.Text = string.Join(", ", template.Categories);
-
+                _dataLoader = new DataLoader(_dataSet.Tables[(string)comboGraphSheet.SelectedItem], _template.Categories);
+                FillFields();
                 MessageBox.Show($"Template '{ofd.SafeFileName}' loaded");
             }
         }
@@ -330,7 +327,7 @@ public partial class FormMain : Form {
     private void btnSaveGraphTemplate_Click(object sender, EventArgs e) {
         if (!Directory.Exists("templates")) Directory.CreateDirectory("templates");
 
-        File.WriteAllText($"templates/{txtGraphExportFilename.Text}.json", JsonSerializer.Serialize(_template));
+        File.WriteAllText($"templates/{txtGraphExportFilename.Text}.json", JsonConvert.SerializeObject(_template));
         MessageBox.Show($"Template '{txtGraphExportFilename.Text}' has been successfully exported.");
     }
 
@@ -399,6 +396,26 @@ public partial class FormMain : Form {
         var grapher = new ErrorBarGrapher(_dataLoader, _template);
         pictureGraph.Image = grapher.GetBitmap();
         pictureGraph.SizeMode = PictureBoxSizeMode.Zoom;
+    }
+
+    /// <summary>
+    ///     Fills all form elements with the values of the currently active template.
+    /// </summary>
+    private void FillFields() {
+        txtGraphHeaderX.Text = _template.GraphLayout.HeaderX;
+        txtGraphHeaderY.Text = _template.GraphLayout.HeaderY;
+        checkGraphLayoutLegend.Checked = _template.GraphLayout.Legend;
+        txtGraphLayoutColor1.Text = HexConverter(_template.GraphLayout.color1);
+        txtGraphLayoutColor2.Text = HexConverter(_template.GraphLayout.color2);
+    }
+
+    /// <summary>
+    ///     Converts a color to hex string.
+    /// </summary>
+    /// <param name="c">The color.</param>
+    /// <returns>Hex color string starting with #.</returns>
+    private static string HexConverter(Color c) {
+        return c.Name.Replace("ff", "#");
     }
 
     #endregion
