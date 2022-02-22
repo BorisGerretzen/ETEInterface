@@ -197,6 +197,7 @@ public partial class FormMain : Form {
         txtGraphExportFilename.Enabled = state;
         btnSaveGraphTemplate.Enabled = state;
         btnLoadGraphTemplate.Enabled = state;
+        tabControlGraph.Enabled = state;
     }
 
     private void btnSelectGraphFile_Click(object sender, EventArgs e) {
@@ -221,7 +222,10 @@ public partial class FormMain : Form {
                 }
 
                 // Enable controls
-                SetGraphControls(true);
+                comboGraphSheet.Enabled = true;
+
+                // Clear fields
+                ResetGraphFields();
             }
         }
     }
@@ -236,8 +240,13 @@ public partial class FormMain : Form {
         dataGridViewGraph.SelectionMode = DataGridViewSelectionMode.CellSelect;
         dataGridViewGraph.DataSource = _dataSet.Tables[(string)comboGraphSheet.SelectedItem];
         foreach (DataGridViewColumn col in dataGridViewGraph.Columns) col.SortMode = DataGridViewColumnSortMode.NotSortable;
-
         dataGridViewGraph.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
+        SetGraphControls(true);
+        ResetGraphFields();
+    }
+
+    private void ResetGraphFields() {
+        btnSelectCategories.Text = "Select categories";
     }
 
     /// <summary>
@@ -382,7 +391,23 @@ public partial class FormMain : Form {
     /// <param name="sender"></param>
     /// <param name="e"></param>
     private void tabControlGraph_SelectedIndexChanged(object sender, EventArgs e) {
-        if (tabControlGraph.SelectedTab == tabGraph) GenerateGraph();
+        if (tabControlGraph.SelectedTab == tabGraph) {
+            if (_template == null || _dataLoader == null) {
+                MessageBox.Show(
+                    "Cannot show graph without selecting categories first.\nHint: hold the control button on your keyboard and select your category columns, then press the 'Select categories' button.",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(_template.axis)) {
+                MessageBox.Show(
+                    "Cannot show graph without any combinations.\nHint: Press the 'Select combinations' button to add new combinations, leave one category on '*' for both samples, this will be the variable on the x axis.",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            GenerateGraph();
+        }
     }
 
     /// <summary>
@@ -392,6 +417,8 @@ public partial class FormMain : Form {
         _template.GraphLayout.HeaderX = txtGraphHeaderX.Text;
         _template.GraphLayout.HeaderY = txtGraphHeaderY.Text;
         _template.GraphLayout.Legend = checkGraphLayoutLegend.Checked;
+        _template.GraphLayout.color1 = ColorTranslator.FromHtml(txtGraphLayoutColor1.Text);
+        _template.GraphLayout.color2 = ColorTranslator.FromHtml(txtGraphLayoutColor2.Text);
 
         var grapher = new ErrorBarGrapher(_dataLoader, _template);
         pictureGraph.Image = grapher.GetBitmap();
