@@ -464,7 +464,7 @@ public partial class FormMain : Form {
     /// <param name="c">The color.</param>
     /// <returns>Hex color string starting with #.</returns>
     private static string HexConverter(Color c) {
-        return c.Name.Replace("ff", "#");
+        return "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
     }
 
     #endregion
