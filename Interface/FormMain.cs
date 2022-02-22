@@ -260,6 +260,12 @@ public partial class FormMain : Form {
         // Get string values of columns and add to list
         _template = new GraphTemplate();
         _template.Categories = new List<string>();
+        if (dataGridViewGraph.SelectedColumns.Count == 0) {
+            MessageBox.Show(
+                "Cannot select zero columns.\nHint: Hold the control button on your keyboard and click on the columns you want to select as categories. Then press the 'Select categories' button again.",
+                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
         foreach (DataGridViewColumn? col in dataGridViewGraph.SelectedColumns) {
             if (col == null) continue;
 
