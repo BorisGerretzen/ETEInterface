@@ -29,12 +29,6 @@ public class GraphTemplate {
         Add(item);
     }
 
-    public void Export(DataSet ds, DataLoader dl, string exportDirectory) {
-        foreach (var item in Items) {
-            var grapher = new ErrorBarGrapher(dl, this);
-        }
-    }
-
     public class GraphLayoutTemplate {
         public Color color1 { get; set; }
         public Color color2 { get; set; }
