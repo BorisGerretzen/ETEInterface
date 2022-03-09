@@ -193,6 +193,11 @@ public partial class FormMain : Form {
             groupExport.Enabled = true;
     }
 
+    private void btnGraphViewCombinations_Click(object sender, EventArgs e) {
+        var formViewCombinations = new FormViewCombinations(_template, _dataLoader.GetAllCategoryValues());
+        formViewCombinations.Show();
+    }
+
     #region Graphs
 
     /// <summary>

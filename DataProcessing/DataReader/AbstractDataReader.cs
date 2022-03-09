@@ -2,7 +2,7 @@
 
 namespace DataProcessing.DataReader;
 
-internal abstract class AbstractDataReader {
+public abstract class AbstractDataReader {
     protected string FileName;
     protected string SheetName;
 

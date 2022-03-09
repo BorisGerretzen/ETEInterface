@@ -84,11 +84,9 @@ public partial class FormAddGraph : Form {
                 MessageBox.Show("'*' must be in the same category for both series.");
                 return;
             }
-            // If none are * just add it to filters
-            else {
-                options1[category] = option1;
-                options2[category] = option2;
-            }
+
+            options1[category] = option1;
+            options2[category] = option2;
         }
 
         // If there is no axis found show a message.

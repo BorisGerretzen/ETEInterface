@@ -1,6 +1,4 @@
 ﻿using System.Drawing;
-using Grapher.Graph;
-using ScottPlot;
 
 namespace Grapher;
 
@@ -10,12 +8,12 @@ public class GraphTemplate {
         GraphLayout = new GraphLayoutTemplate();
     }
 
-    public GraphLayoutTemplate GraphLayout { get; set; }
+    public GraphLayoutTemplate GraphLayout { get; }
 
     public string SheetName { get; set; }
 
     public List<string> Categories { get; set; }
-    public List<GraphTemplateItem> Items { get; set; }
+    public List<GraphTemplateItem> Items { get; }
     public string axis { get; set; }
 
     public void Add(GraphTemplateItem item) {
