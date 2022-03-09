@@ -74,10 +74,10 @@
             this.tabGraph = new System.Windows.Forms.TabPage();
             this.pictureGraph = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btnGraphViewCombinations = new System.Windows.Forms.Button();
             this.txtGraphExportFilename = new System.Windows.Forms.TextBox();
             this.btnSaveGraphTemplate = new System.Windows.Forms.Button();
             this.btnLoadGraphTemplate = new System.Windows.Forms.Button();
-            this.btnSelectCombinations = new System.Windows.Forms.Button();
             this.btnSelectCategories = new System.Windows.Forms.Button();
             this.comboGraphSheet = new System.Windows.Forms.ComboBox();
             this.btnSelectGraphFile = new System.Windows.Forms.Button();
@@ -86,7 +86,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.linkEmail = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnGraphViewCombinations = new System.Windows.Forms.Button();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupExport.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -644,7 +643,6 @@
             this.panel5.Controls.Add(this.txtGraphExportFilename);
             this.panel5.Controls.Add(this.btnSaveGraphTemplate);
             this.panel5.Controls.Add(this.btnLoadGraphTemplate);
-            this.panel5.Controls.Add(this.btnSelectCombinations);
             this.panel5.Controls.Add(this.btnSelectCategories);
             this.panel5.Controls.Add(this.comboGraphSheet);
             this.panel5.Controls.Add(this.btnSelectGraphFile);
@@ -653,6 +651,16 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(141, 441);
             this.panel5.TabIndex = 2;
+            // 
+            // btnGraphViewCombinations
+            // 
+            this.btnGraphViewCombinations.Location = new System.Drawing.Point(3, 96);
+            this.btnGraphViewCombinations.Name = "btnGraphViewCombinations";
+            this.btnGraphViewCombinations.Size = new System.Drawing.Size(135, 26);
+            this.btnGraphViewCombinations.TabIndex = 7;
+            this.btnGraphViewCombinations.Text = "View combinations";
+            this.btnGraphViewCombinations.UseVisualStyleBackColor = true;
+            this.btnGraphViewCombinations.Click += new System.EventHandler(this.btnGraphViewCombinations_Click);
             // 
             // txtGraphExportFilename
             // 
@@ -681,16 +689,6 @@
             this.btnLoadGraphTemplate.Text = "Load from template";
             this.btnLoadGraphTemplate.UseVisualStyleBackColor = true;
             this.btnLoadGraphTemplate.Click += new System.EventHandler(this.btnLoadGraphTemplate_Click);
-            // 
-            // btnSelectCombinations
-            // 
-            this.btnSelectCombinations.Location = new System.Drawing.Point(3, 96);
-            this.btnSelectCombinations.Name = "btnSelectCombinations";
-            this.btnSelectCombinations.Size = new System.Drawing.Size(135, 26);
-            this.btnSelectCombinations.TabIndex = 3;
-            this.btnSelectCombinations.Text = "Select combinations";
-            this.btnSelectCombinations.UseVisualStyleBackColor = true;
-            this.btnSelectCombinations.Click += new System.EventHandler(this.btnCombinations_Click);
             // 
             // btnSelectCategories
             // 
@@ -780,16 +778,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "If you need help or have a  feature suggestion, send an email to the email addres" +
     "s below, or create an issue on Github.";
-            // 
-            // btnGraphViewCombinations
-            // 
-            this.btnGraphViewCombinations.Location = new System.Drawing.Point(3, 128);
-            this.btnGraphViewCombinations.Name = "btnGraphViewCombinations";
-            this.btnGraphViewCombinations.Size = new System.Drawing.Size(135, 26);
-            this.btnGraphViewCombinations.TabIndex = 7;
-            this.btnGraphViewCombinations.Text = "View combinations";
-            this.btnGraphViewCombinations.UseVisualStyleBackColor = true;
-            this.btnGraphViewCombinations.Click += new System.EventHandler(this.btnGraphViewCombinations_Click);
             // 
             // FormMain
             // 
@@ -883,7 +871,6 @@
         private Button btnSelectGraphFile;
         private ComboBox comboGraphSheet;
         private Button btnSelectCategories;
-        private Button btnSelectCombinations;
         private Button btnSaveGraphTemplate;
         private Button btnLoadGraphTemplate;
         private TextBox txtGraphExportFilename;

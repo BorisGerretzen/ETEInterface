@@ -7,15 +7,18 @@ using DataProcessing.WinForms;
 using Grapher;
 using Grapher.Data;
 using Grapher.Graph;
+using MoreLinq;
 using Newtonsoft.Json;
 
 namespace Interface;
 
 public partial class FormMain : Form {
+    private readonly Dictionary<Control, int> _graphControlActivationLevels;
     private readonly OptionsPanelFactory.OptionsPanel _optionsPanelTear;
     private readonly OptionsPanelFactory.OptionsPanel _optionsPanelTensile;
     private DataLoader _dataLoader;
     private DataSet _dataSet;
+    private FormViewCombinations _formViewCombinations;
     private string _inputDirectory = null!;
     private string _inputFile;
     private string _outputFile = null!;
@@ -24,7 +27,19 @@ public partial class FormMain : Form {
 
     public FormMain() {
         InitializeComponent();
-        SetGraphControls(false);
+        _graphControlActivationLevels = new Dictionary<Control, int> {
+            { comboGraphSheet, 1 },
+            { btnLoadGraphTemplate, 1 },
+            { btnSelectCategories, 2 },
+            { txtGraphExportFilename, 3 },
+            { btnGraphViewCombinations, 3 },
+            { btnSaveGraphTemplate, 3 },
+            { tabControlGraph, 2 },
+            { tabData, 2 },
+            { tabLayout, 3 },
+            { tabGraph, 3 }
+        };
+        SetGraphControls(0);
 
         _optionsPanelTensile = OptionsPanelFactory.GetOptionsPanel(TensileProcessor.Empty.GetHeaders(), "rebound");
         _optionsPanelTear = OptionsPanelFactory.GetOptionsPanel(TearProcessor.Empty.GetHeaders(), "rebound");
@@ -193,9 +208,18 @@ public partial class FormMain : Form {
             groupExport.Enabled = true;
     }
 
+    public void NewCombinationCallback(GraphTemplate template) {
+        var items = new List<GraphTemplate.GraphTemplateItem>(template.Items);
+        _template.Items.Clear();
+        _template.Items.AddRange(items);
+    }
+
     private void btnGraphViewCombinations_Click(object sender, EventArgs e) {
-        var formViewCombinations = new FormViewCombinations(_template, _dataLoader.GetAllCategoryValues());
-        formViewCombinations.Show();
+        // Only create new if form doesnt exist
+        if (_formViewCombinations is not { IsHandleCreated: true }) {
+            _formViewCombinations = new FormViewCombinations(_template, _dataLoader.GetAllCategoryValues(), NewCombinationCallback);
+            _formViewCombinations.Show();
+        }
     }
 
     #region Graphs
@@ -204,14 +228,8 @@ public partial class FormMain : Form {
     ///     Turns the control elements of the graph generator on and off.
     /// </summary>
     /// <param name="state">On or off.</param>
-    private void SetGraphControls(bool state) {
-        comboGraphSheet.Enabled = state;
-        btnSelectCategories.Enabled = state;
-        btnSelectCombinations.Enabled = state;
-        txtGraphExportFilename.Enabled = state;
-        btnSaveGraphTemplate.Enabled = state;
-        btnLoadGraphTemplate.Enabled = state;
-        tabControlGraph.Enabled = state;
+    private void SetGraphControls(int state) {
+        _graphControlActivationLevels.ForEach(kvp => kvp.Key.Enabled = state >= kvp.Value);
     }
 
     private void btnSelectGraphFile_Click(object sender, EventArgs e) {
@@ -236,7 +254,7 @@ public partial class FormMain : Form {
                 }
 
                 // Enable controls
-                comboGraphSheet.Enabled = true;
+                SetGraphControls(1);
 
                 // Clear fields
                 ResetGraphFields();
@@ -255,7 +273,7 @@ public partial class FormMain : Form {
         dataGridViewGraph.DataSource = _dataSet.Tables[(string)comboGraphSheet.SelectedItem];
         foreach (DataGridViewColumn col in dataGridViewGraph.Columns) col.SortMode = DataGridViewColumnSortMode.NotSortable;
         dataGridViewGraph.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
-        SetGraphControls(true);
+        SetGraphControls(2);
         ResetGraphFields();
     }
 
@@ -283,45 +301,13 @@ public partial class FormMain : Form {
 
         foreach (DataGridViewColumn? col in dataGridViewGraph.SelectedColumns) {
             if (col == null) continue;
-
             _template.Categories.Add(col.Name);
         }
 
         btnSelectCategories.Text = string.Join(", ", _template.Categories);
         _dataLoader = new DataLoader(_dataSet.Tables[(string)comboGraphSheet.SelectedItem], _template.Categories);
         _template.SheetName = (string)comboGraphSheet.SelectedItem;
-    }
-
-    /// <summary>
-    ///     Is called whenever FormAddGraph reports a new combination to be added to the list.
-    ///     Adds the combination to the template.
-    /// </summary>
-    /// <param name="filters1">Filters for the first series in the graph.</param>
-    /// <param name="filters2">Filters for the second series in the graph.</param>
-    /// <param name="axis">The name of the category that will be the x axis.</param>
-    private void AddGraphComboResultCallback(Dictionary<string, string> filters1, Dictionary<string, string> filters2, string axis) {
-        if (!string.IsNullOrEmpty(_template.axis) && _template.axis != axis) {
-            MessageBox.Show($"Because you already created a graph in this template, '*' can only be chosen for category {axis}");
-            return;
-        }
-
-        _template.axis = axis;
-        _template.Add(filters1, filters2);
-        var categories = _dataLoader.GetAllCategoryValues();
-        var formAddGraph = new FormAddGraph(categories, AddGraphComboResultCallback);
-        formAddGraph.Show();
-    }
-
-    /// <summary>
-    ///     Called whenever the user presses the button to add a new combination.
-    ///     Opens a new FormAddGraph window where the user can fill in their desired combination.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void btnCombinations_Click(object sender, EventArgs e) {
-        var categories = _dataLoader.GetAllCategoryValues();
-        var formAddGraph = new FormAddGraph(categories, AddGraphComboResultCallback);
-        formAddGraph.Show();
+        SetGraphControls(3);
     }
 
     /// <summary>
@@ -341,9 +327,11 @@ public partial class FormMain : Form {
                 var template = JsonConvert.DeserializeObject<GraphTemplate>(json);
                 _template = template;
                 comboGraphSheet.SelectedItem = template.SheetName;
+                txtGraphExportFilename.Text = ofd.SafeFileName?.Split(".")[0];
                 btnSelectCategories.Text = string.Join(", ", template.Categories);
                 _dataLoader = new DataLoader(_dataSet.Tables[(string)comboGraphSheet.SelectedItem], _template.Categories);
                 FillFields();
+                SetGraphControls(3);
                 MessageBox.Show($"Template '{ofd.SafeFileName}' loaded");
             }
         }
