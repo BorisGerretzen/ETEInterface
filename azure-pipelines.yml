@@ -9,11 +9,6 @@ trigger:
 pool:
   vmImage: 'windows-2022'
 
-variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
-
 steps:
 - task: NuGetToolInstaller@0
   displayName: 'Use NuGet 4.4.1'
@@ -23,23 +18,23 @@ steps:
 - task: NuGetCommand@2
   displayName: 'NuGet restore'
   inputs:
-    restoreSolution: '$(Parameters.solution)'
+    restoreSolution: '**/*.sln'
 
 - task: VSBuild@1
   displayName: 'Build solution **\*.sln'
   inputs:
-    solution: '$(Parameters.solution)'
-    platform: '$(BuildPlatform)'
-    configuration: '$(BuildConfiguration)'
+    solution: '**/*.sln'
+    platform: 'Any CPU'
+    configuration: 'Release'
 
 - task: VSTest@2
   displayName: 'VsTest - testAssemblies'
   inputs:
     testAssemblyVer2: |
-     **\$(BuildConfiguration)\*test*.dll
+     **\Release\*test*.dll
      !**\obj\**
-    platform: '$(BuildPlatform)'
-    configuration: '$(BuildConfiguration)'
+    platform: 'Any CPU'
+    configuration: 'Release'
 
 - task: PublishSymbols@2
   displayName: 'Publish symbols path'
@@ -52,7 +47,7 @@ steps:
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
   inputs:
     SourceFolder: '$(system.defaultworkingdirectory)'
-    Contents: 'Interface\bin\$(BuildConfiguration)\**'
+    Contents: 'Interface\bin\Release\**'
     TargetFolder: '$(build.artifactstagingdirectory)'
   condition: succeededOrFailed()
 
