@@ -18,11 +18,14 @@
     <PackageReference Include="EPPlus" Version="5.8.6" />
     <PackageReference Include="ExcelDataReader" Version="3.6.0" />
     <PackageReference Include="ExcelDataReader.DataSet" Version="3.6.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DataProcessing.WinForms\DataProcessing.WinForms.csproj" />
     <ProjectReference Include="..\DataProcessing\DataProcessing.csproj" />
+    <ProjectReference Include="..\Grapher\Grapher.csproj" />
   </ItemGroup>
 
   <ItemGroup>

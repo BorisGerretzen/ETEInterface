@@ -1,6 +1,6 @@
 ﻿using MoreLinq;
 
-namespace DataProcessing.DataInterpreter; 
+namespace DataProcessing.DataInterpreter;
 
 internal class DataInterpreterTensileElongation : AbstractDataInterpreter {
     private List<(double, double)>? _peaks;

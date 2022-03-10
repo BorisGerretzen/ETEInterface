@@ -1,8 +1,8 @@
 ﻿using OfficeOpenXml;
 
-namespace DataProcessing.DataReader; 
+namespace DataProcessing.DataReader;
 
-internal abstract class AbstractDataReader {
+public abstract class AbstractDataReader {
     protected string FileName;
     protected string SheetName;
 
@@ -12,5 +12,10 @@ internal abstract class AbstractDataReader {
         SheetName = sheetName;
     }
 
+    /// <summary>
+    ///     Reads the data from a file
+    /// </summary>
+    /// <param name="sheetName">Name of the sheet to read from</param>
+    /// <returns></returns>
     public abstract List<List<(double, double)>> ReadData(string sheetName = "");
 }

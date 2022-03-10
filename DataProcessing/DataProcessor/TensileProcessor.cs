@@ -4,18 +4,17 @@ using DataProcessing.DataReader;
 namespace DataProcessing.DataProcessor;
 
 public class TensileProcessor : AbstractProcessor {
+    public static TensileProcessor Empty = new("", false);
+
     public TensileProcessor(string directory, bool separate) : base(directory, separate) {
         Filter = "*.xlsx";
-    }
-
-    public override List<string> GetHeaders() {
-        return new List<string> {
+        SetHeaders(new List<string> {
             "min",
             "mean",
             "max",
             "error bottom",
             "error top"
-        };
+        });
     }
 
     public override void Process(string outputFile) {
@@ -23,6 +22,7 @@ public class TensileProcessor : AbstractProcessor {
         var dataElongation = new List<(string, List<double>)>();
         var removableColumns = RemoveFromResults();
 
+        // Loop through all target files
         foreach (var file in System.IO.Directory.GetFiles(Directory, Filter)) {
             // Readers and interpreters
             AbstractDataReader reader = new DataReaderTensile(file, "Values Series");
@@ -42,11 +42,11 @@ public class TensileProcessor : AbstractProcessor {
             dataElongation.Add(rowElongation);
         }
 
+        // Get target headers and get rid of the rest
         var headersTarget = GetHeaders();
-        if (_headers != null && _headers.Count > 0) {
-            headersTarget = _headers.Where((row) => row.Value).Select((row) => row.Key).ToList();
-        }
+        if (_headersActive != null && _headersActive.Count > 0) headersTarget = _headersActive.Where(row => row.Value).Select(row => row.Key).ToList();
 
+        // Write to file
         var writer = new DataWriter(dataStrain, headersTarget);
         writer.Write(outputFile, "TensileStrain", Separate);
         writer = new DataWriter(dataElongation, headersTarget);
