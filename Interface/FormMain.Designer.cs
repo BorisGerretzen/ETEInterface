@@ -55,11 +55,6 @@
             this.tabRebound = new System.Windows.Forms.TabPage();
             this.tableRebound = new System.Windows.Forms.TableLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.tabHelp = new System.Windows.Forms.TabPage();
-            this.linkGithub = new System.Windows.Forms.LinkLabel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.linkEmail = new System.Windows.Forms.LinkLabel();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabGraphs = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControlGraph = new System.Windows.Forms.TabControl();
@@ -79,13 +74,18 @@
             this.tabGraph = new System.Windows.Forms.TabPage();
             this.pictureGraph = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btnGraphViewCombinations = new System.Windows.Forms.Button();
             this.txtGraphExportFilename = new System.Windows.Forms.TextBox();
             this.btnSaveGraphTemplate = new System.Windows.Forms.Button();
             this.btnLoadGraphTemplate = new System.Windows.Forms.Button();
-            this.btnSelectCombinations = new System.Windows.Forms.Button();
             this.btnSelectCategories = new System.Windows.Forms.Button();
             this.comboGraphSheet = new System.Windows.Forms.ComboBox();
             this.btnSelectGraphFile = new System.Windows.Forms.Button();
+            this.tabHelp = new System.Windows.Forms.TabPage();
+            this.linkGithub = new System.Windows.Forms.LinkLabel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.linkEmail = new System.Windows.Forms.LinkLabel();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupExport.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -102,7 +102,6 @@
             this.tableTear.SuspendLayout();
             this.tabRebound.SuspendLayout();
             this.tableRebound.SuspendLayout();
-            this.tabHelp.SuspendLayout();
             this.tabGraphs.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tabControlGraph.SuspendLayout();
@@ -113,6 +112,7 @@
             this.tabGraph.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureGraph)).BeginInit();
             this.panel5.SuspendLayout();
+            this.tabHelp.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -330,8 +330,8 @@
             this.tabControlMain.Controls.Add(this.tabTensile);
             this.tabControlMain.Controls.Add(this.tabTear);
             this.tabControlMain.Controls.Add(this.tabRebound);
-            this.tabControlMain.Controls.Add(this.tabHelp);
             this.tabControlMain.Controls.Add(this.tabGraphs);
+            this.tabControlMain.Controls.Add(this.tabHelp);
             this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlMain.Location = new System.Drawing.Point(4, 3);
             this.tabControlMain.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -445,65 +445,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(142, 447);
             this.panel4.TabIndex = 0;
-            // 
-            // tabHelp
-            // 
-            this.tabHelp.Controls.Add(this.linkGithub);
-            this.tabHelp.Controls.Add(this.label2);
-            this.tabHelp.Controls.Add(this.linkEmail);
-            this.tabHelp.Controls.Add(this.label1);
-            this.tabHelp.Location = new System.Drawing.Point(4, 24);
-            this.tabHelp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabHelp.Name = "tabHelp";
-            this.tabHelp.Size = new System.Drawing.Size(743, 453);
-            this.tabHelp.TabIndex = 3;
-            this.tabHelp.Text = "Help";
-            this.tabHelp.UseVisualStyleBackColor = true;
-            // 
-            // linkGithub
-            // 
-            this.linkGithub.AutoSize = true;
-            this.linkGithub.Location = new System.Drawing.Point(7, 48);
-            this.linkGithub.Name = "linkGithub";
-            this.linkGithub.Size = new System.Drawing.Size(295, 15);
-            this.linkGithub.TabIndex = 3;
-            this.linkGithub.TabStop = true;
-            this.linkGithub.Text = "https://github.com/BorisGerretzen/ETEInterface/issues";
-            this.linkGithub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkGithub_LinkClicked);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 87);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(420, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "The email address is automatically copied into your clipboard if you click on it." +
-    "";
-            // 
-            // linkEmail
-            // 
-            this.linkEmail.AutoSize = true;
-            this.linkEmail.Location = new System.Drawing.Point(7, 24);
-            this.linkEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.linkEmail.Name = "linkEmail";
-            this.linkEmail.Size = new System.Drawing.Size(144, 15);
-            this.linkEmail.TabIndex = 1;
-            this.linkEmail.TabStop = true;
-            this.linkEmail.Text = "ete@fire.fundersclub.com";
-            this.linkEmail.Click += new System.EventHandler(this.linkEmail_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 5);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(626, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "If you need help or have a  feature suggestion, send an email to the email addres" +
-    "s below, or create an issue on Github.";
             // 
             // tabGraphs
             // 
@@ -698,10 +639,10 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.btnGraphViewCombinations);
             this.panel5.Controls.Add(this.txtGraphExportFilename);
             this.panel5.Controls.Add(this.btnSaveGraphTemplate);
             this.panel5.Controls.Add(this.btnLoadGraphTemplate);
-            this.panel5.Controls.Add(this.btnSelectCombinations);
             this.panel5.Controls.Add(this.btnSelectCategories);
             this.panel5.Controls.Add(this.comboGraphSheet);
             this.panel5.Controls.Add(this.btnSelectGraphFile);
@@ -710,6 +651,16 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(141, 441);
             this.panel5.TabIndex = 2;
+            // 
+            // btnGraphViewCombinations
+            // 
+            this.btnGraphViewCombinations.Location = new System.Drawing.Point(3, 96);
+            this.btnGraphViewCombinations.Name = "btnGraphViewCombinations";
+            this.btnGraphViewCombinations.Size = new System.Drawing.Size(135, 26);
+            this.btnGraphViewCombinations.TabIndex = 7;
+            this.btnGraphViewCombinations.Text = "View combinations";
+            this.btnGraphViewCombinations.UseVisualStyleBackColor = true;
+            this.btnGraphViewCombinations.Click += new System.EventHandler(this.btnGraphViewCombinations_Click);
             // 
             // txtGraphExportFilename
             // 
@@ -738,16 +689,6 @@
             this.btnLoadGraphTemplate.Text = "Load from template";
             this.btnLoadGraphTemplate.UseVisualStyleBackColor = true;
             this.btnLoadGraphTemplate.Click += new System.EventHandler(this.btnLoadGraphTemplate_Click);
-            // 
-            // btnSelectCombinations
-            // 
-            this.btnSelectCombinations.Location = new System.Drawing.Point(3, 96);
-            this.btnSelectCombinations.Name = "btnSelectCombinations";
-            this.btnSelectCombinations.Size = new System.Drawing.Size(135, 26);
-            this.btnSelectCombinations.TabIndex = 3;
-            this.btnSelectCombinations.Text = "Select combinations";
-            this.btnSelectCombinations.UseVisualStyleBackColor = true;
-            this.btnSelectCombinations.Click += new System.EventHandler(this.btnCombinations_Click);
             // 
             // btnSelectCategories
             // 
@@ -779,6 +720,65 @@
             this.btnSelectGraphFile.UseVisualStyleBackColor = true;
             this.btnSelectGraphFile.Click += new System.EventHandler(this.btnSelectGraphFile_Click);
             // 
+            // tabHelp
+            // 
+            this.tabHelp.Controls.Add(this.linkGithub);
+            this.tabHelp.Controls.Add(this.label2);
+            this.tabHelp.Controls.Add(this.linkEmail);
+            this.tabHelp.Controls.Add(this.label1);
+            this.tabHelp.Location = new System.Drawing.Point(4, 24);
+            this.tabHelp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tabHelp.Name = "tabHelp";
+            this.tabHelp.Size = new System.Drawing.Size(743, 453);
+            this.tabHelp.TabIndex = 3;
+            this.tabHelp.Text = "Help";
+            this.tabHelp.UseVisualStyleBackColor = true;
+            // 
+            // linkGithub
+            // 
+            this.linkGithub.AutoSize = true;
+            this.linkGithub.Location = new System.Drawing.Point(7, 48);
+            this.linkGithub.Name = "linkGithub";
+            this.linkGithub.Size = new System.Drawing.Size(295, 15);
+            this.linkGithub.TabIndex = 3;
+            this.linkGithub.TabStop = true;
+            this.linkGithub.Text = "https://github.com/BorisGerretzen/ETEInterface/issues";
+            this.linkGithub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkGithub_LinkClicked);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 87);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(420, 15);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "The email address is automatically copied into your clipboard if you click on it." +
+    "";
+            // 
+            // linkEmail
+            // 
+            this.linkEmail.AutoSize = true;
+            this.linkEmail.Location = new System.Drawing.Point(7, 24);
+            this.linkEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkEmail.Name = "linkEmail";
+            this.linkEmail.Size = new System.Drawing.Size(144, 15);
+            this.linkEmail.TabIndex = 1;
+            this.linkEmail.TabStop = true;
+            this.linkEmail.Text = "ete@fire.fundersclub.com";
+            this.linkEmail.Click += new System.EventHandler(this.linkEmail_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 5);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(626, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "If you need help or have a  feature suggestion, send an email to the email addres" +
+    "s below, or create an issue on Github.";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -809,8 +809,6 @@
             this.tableTear.ResumeLayout(false);
             this.tabRebound.ResumeLayout(false);
             this.tableRebound.ResumeLayout(false);
-            this.tabHelp.ResumeLayout(false);
-            this.tabHelp.PerformLayout();
             this.tabGraphs.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tabControlGraph.ResumeLayout(false);
@@ -823,6 +821,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureGraph)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.tabHelp.ResumeLayout(false);
+            this.tabHelp.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -871,7 +871,6 @@
         private Button btnSelectGraphFile;
         private ComboBox comboGraphSheet;
         private Button btnSelectCategories;
-        private Button btnSelectCombinations;
         private Button btnSaveGraphTemplate;
         private Button btnLoadGraphTemplate;
         private TextBox txtGraphExportFilename;
@@ -886,6 +885,7 @@
         private TextBox txtGraphLayoutColor1;
         private Label labelGraphLayoutColor2Incorrect;
         private Label labelGraphLayoutColor1Incorrect;
+        private Button btnGraphViewCombinations;
     }
 }
 
