@@ -36,14 +36,21 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.radioSheet = new System.Windows.Forms.RadioButton();
             this.radioSeparate = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnSelectOutput = new System.Windows.Forms.Button();
-            this.btnSelectInput = new System.Windows.Forms.Button();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.checkRecursive = new System.Windows.Forms.CheckBox();
+            this.btnSelectOutput = new System.Windows.Forms.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.btnExport = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.radioZS2 = new System.Windows.Forms.RadioButton();
+            this.radioXLS = new System.Windows.Forms.RadioButton();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.checkRecursive = new System.Windows.Forms.CheckBox();
+            this.btnSelectInput = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabTensile = new System.Windows.Forms.TabPage();
@@ -91,9 +98,14 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabTensile.SuspendLayout();
@@ -120,27 +132,29 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 83.6773F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.3227F));
-            this.tableLayoutPanel2.Controls.Add(this.groupExport, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.groupExport, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.groupBox1, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 490);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(751, 126);
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 135F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(751, 264);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // groupExport
             // 
             this.groupExport.Controls.Add(this.tableLayoutPanel3);
             this.groupExport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupExport.Location = new System.Drawing.Point(4, 3);
+            this.groupExport.Location = new System.Drawing.Point(4, 132);
             this.groupExport.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupExport.Name = "groupExport";
             this.groupExport.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupExport.Size = new System.Drawing.Size(620, 120);
-            this.groupExport.TabIndex = 2;
+            this.groupExport.Size = new System.Drawing.Size(620, 129);
+            this.groupExport.TabIndex = 4;
             this.groupExport.TabStop = false;
             this.groupExport.Text = "Export options";
             // 
@@ -148,18 +162,17 @@
             // 
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.97899F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.68768F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.54248F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.64052F));
             this.tableLayoutPanel3.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.groupBox2, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.groupBox5, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.panel8, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 19);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(612, 98);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(612, 107);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // panel1
@@ -169,7 +182,7 @@
             this.panel1.Location = new System.Drawing.Point(4, 3);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(150, 92);
+            this.panel1.Size = new System.Drawing.Size(150, 101);
             this.panel1.TabIndex = 0;
             // 
             // groupBox3
@@ -181,7 +194,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox3.Size = new System.Drawing.Size(150, 92);
+            this.groupBox3.Size = new System.Drawing.Size(150, 101);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Output";
@@ -190,7 +203,7 @@
             // 
             this.radioSheet.AutoSize = true;
             this.radioSheet.Checked = true;
-            this.radioSheet.Location = new System.Drawing.Point(7, 48);
+            this.radioSheet.Location = new System.Drawing.Point(8, 48);
             this.radioSheet.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.radioSheet.Name = "radioSheet";
             this.radioSheet.Size = new System.Drawing.Size(97, 19);
@@ -202,7 +215,7 @@
             // radioSeparate
             // 
             this.radioSeparate.AutoSize = true;
-            this.radioSeparate.Location = new System.Drawing.Point(7, 22);
+            this.radioSeparate.Location = new System.Drawing.Point(8, 22);
             this.radioSeparate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.radioSeparate.Name = "radioSeparate";
             this.radioSeparate.Size = new System.Drawing.Size(78, 19);
@@ -211,65 +224,36 @@
             this.radioSeparate.UseVisualStyleBackColor = true;
             this.radioSeparate.CheckedChanged += new System.EventHandler(this.radioSeparate_CheckedChanged);
             // 
-            // groupBox2
+            // panel8
             // 
-            this.groupBox2.Controls.Add(this.btnSelectOutput);
-            this.groupBox2.Controls.Add(this.btnSelectInput);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(162, 3);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox2.Size = new System.Drawing.Size(241, 92);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Files";
-            // 
-            // btnSelectOutput
-            // 
-            this.btnSelectOutput.Location = new System.Drawing.Point(7, 58);
-            this.btnSelectOutput.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnSelectOutput.Name = "btnSelectOutput";
-            this.btnSelectOutput.Size = new System.Drawing.Size(227, 27);
-            this.btnSelectOutput.TabIndex = 1;
-            this.btnSelectOutput.Text = "Select output file";
-            this.btnSelectOutput.UseVisualStyleBackColor = true;
-            this.btnSelectOutput.Click += new System.EventHandler(this.btnSelectOutput_Click);
-            // 
-            // btnSelectInput
-            // 
-            this.btnSelectInput.Location = new System.Drawing.Point(7, 18);
-            this.btnSelectInput.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnSelectInput.Name = "btnSelectInput";
-            this.btnSelectInput.Size = new System.Drawing.Size(227, 27);
-            this.btnSelectInput.TabIndex = 0;
-            this.btnSelectInput.Text = "Select input directory";
-            this.btnSelectInput.UseVisualStyleBackColor = true;
-            this.btnSelectInput.Click += new System.EventHandler(this.btnSelectInput_Click);
+            this.panel8.Controls.Add(this.groupBox5);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(161, 3);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(235, 101);
+            this.panel8.TabIndex = 4;
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.checkRecursive);
+            this.groupBox5.Controls.Add(this.btnSelectOutput);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox5.Location = new System.Drawing.Point(411, 3);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox5.Location = new System.Drawing.Point(0, 0);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox5.Size = new System.Drawing.Size(197, 92);
-            this.groupBox5.TabIndex = 3;
+            this.groupBox5.Size = new System.Drawing.Size(235, 101);
+            this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Additional options";
+            this.groupBox5.Text = "Output file";
             // 
-            // checkRecursive
+            // btnSelectOutput
             // 
-            this.checkRecursive.AutoSize = true;
-            this.checkRecursive.Location = new System.Drawing.Point(8, 22);
-            this.checkRecursive.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.checkRecursive.Name = "checkRecursive";
-            this.checkRecursive.Size = new System.Drawing.Size(169, 19);
-            this.checkRecursive.TabIndex = 0;
-            this.checkRecursive.Text = "Search input subdirectories";
-            this.checkRecursive.UseVisualStyleBackColor = true;
+            this.btnSelectOutput.Location = new System.Drawing.Point(5, 22);
+            this.btnSelectOutput.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnSelectOutput.Name = "btnSelectOutput";
+            this.btnSelectOutput.Size = new System.Drawing.Size(221, 27);
+            this.btnSelectOutput.TabIndex = 6;
+            this.btnSelectOutput.Text = "Select output file";
+            this.btnSelectOutput.UseVisualStyleBackColor = true;
+            this.btnSelectOutput.Click += new System.EventHandler(this.btnSelectOutput_Click);
             // 
             // tableLayoutPanel6
             // 
@@ -278,13 +262,13 @@
             this.tableLayoutPanel6.Controls.Add(this.btnExport, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.progressBar, 0, 1);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(632, 3);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(632, 132);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75.47169F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.5283F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(115, 120);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(115, 129);
             this.tableLayoutPanel6.TabIndex = 3;
             // 
             // btnExport
@@ -293,7 +277,7 @@
             this.btnExport.Location = new System.Drawing.Point(4, 3);
             this.btnExport.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(107, 84);
+            this.btnExport.Size = new System.Drawing.Size(107, 91);
             this.btnExport.TabIndex = 3;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
@@ -302,16 +286,119 @@
             // progressBar
             // 
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBar.Location = new System.Drawing.Point(4, 93);
+            this.progressBar.Location = new System.Drawing.Point(4, 100);
             this.progressBar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(107, 24);
+            this.progressBar.Size = new System.Drawing.Size(107, 26);
             this.progressBar.TabIndex = 4;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tableLayoutPanel5);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(622, 123);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Import options";
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 3;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.65087F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.34913F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 218F));
+            this.tableLayoutPanel5.Controls.Add(this.groupBox4, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.panel7, 1, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 19);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(616, 101);
+            this.tableLayoutPanel5.TabIndex = 0;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.radioZS2);
+            this.groupBox4.Controls.Add(this.radioXLS);
+            this.groupBox4.Location = new System.Drawing.Point(3, 3);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(151, 95);
+            this.groupBox4.TabIndex = 0;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Filetype";
+            // 
+            // radioZS2
+            // 
+            this.radioZS2.AutoSize = true;
+            this.radioZS2.Checked = true;
+            this.radioZS2.Location = new System.Drawing.Point(6, 22);
+            this.radioZS2.Name = "radioZS2";
+            this.radioZS2.Size = new System.Drawing.Size(44, 19);
+            this.radioZS2.TabIndex = 1;
+            this.radioZS2.TabStop = true;
+            this.radioZS2.Text = ".zs2";
+            this.radioZS2.UseVisualStyleBackColor = true;
+            // 
+            // radioXLS
+            // 
+            this.radioXLS.AutoSize = true;
+            this.radioXLS.Location = new System.Drawing.Point(6, 47);
+            this.radioXLS.Name = "radioXLS";
+            this.radioXLS.Size = new System.Drawing.Size(42, 19);
+            this.radioXLS.TabIndex = 0;
+            this.radioXLS.Text = ".xls";
+            this.radioXLS.UseVisualStyleBackColor = true;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.groupBox2);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(160, 3);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(234, 95);
+            this.panel7.TabIndex = 1;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.checkRecursive);
+            this.groupBox2.Controls.Add(this.btnSelectInput);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(234, 95);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Input files";
+            // 
+            // checkRecursive
+            // 
+            this.checkRecursive.AutoSize = true;
+            this.checkRecursive.Location = new System.Drawing.Point(7, 55);
+            this.checkRecursive.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.checkRecursive.Name = "checkRecursive";
+            this.checkRecursive.Size = new System.Drawing.Size(169, 19);
+            this.checkRecursive.TabIndex = 3;
+            this.checkRecursive.Text = "Search input subdirectories";
+            this.checkRecursive.UseVisualStyleBackColor = true;
+            // 
+            // btnSelectInput
+            // 
+            this.btnSelectInput.Location = new System.Drawing.Point(7, 22);
+            this.btnSelectInput.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnSelectInput.Name = "btnSelectInput";
+            this.btnSelectInput.Size = new System.Drawing.Size(221, 27);
+            this.btnSelectInput.TabIndex = 4;
+            this.btnSelectInput.Text = "Select input directory";
+            this.btnSelectInput.UseVisualStyleBackColor = true;
+            this.btnSelectInput.Click += new System.EventHandler(this.btnSelectInput_Click);
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tabControlMain, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -320,9 +407,9 @@
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 78.67529F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.32472F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(759, 619);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 487F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(759, 757);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // tabControlMain
@@ -783,7 +870,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(759, 619);
+            this.ClientSize = new System.Drawing.Size(759, 757);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -797,10 +884,16 @@
             this.panel1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tabControlMain.ResumeLayout(false);
             this.tabTensile.ResumeLayout(false);
@@ -830,19 +923,8 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.GroupBox groupExport;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.RadioButton radioSeparate;
-        private System.Windows.Forms.RadioButton radioSheet;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button btnSelectOutput;
-        private System.Windows.Forms.Button btnSelectInput;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.CheckBox checkRecursive;
         private System.Windows.Forms.TabControl tabControlMain;
         private System.Windows.Forms.TabPage tabTensile;
         private System.Windows.Forms.TabPage tabTear;
@@ -856,7 +938,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private TableLayoutPanel tableRebound;
-        private Panel panel2;
         private Panel panel3;
         private Panel panel4;
         private LinkLabel linkGithub;
@@ -886,6 +967,25 @@
         private Label labelGraphLayoutColor2Incorrect;
         private Label labelGraphLayoutColor1Incorrect;
         private Button btnGraphViewCombinations;
+        private GroupBox groupExport;
+        private TableLayoutPanel tableLayoutPanel3;
+        private Panel panel1;
+        private GroupBox groupBox3;
+        private RadioButton radioSheet;
+        private RadioButton radioSeparate;
+        private GroupBox groupBox1;
+        private TableLayoutPanel tableLayoutPanel5;
+        private GroupBox groupBox4;
+        private RadioButton radioZS2;
+        private RadioButton radioXLS;
+        private Panel panel2;
+        private Panel panel8;
+        private Panel panel7;
+        private GroupBox groupBox5;
+        private Button btnSelectOutput;
+        private GroupBox groupBox2;
+        private CheckBox checkRecursive;
+        private Button btnSelectInput;
     }
 }
 

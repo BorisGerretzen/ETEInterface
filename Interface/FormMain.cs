@@ -19,9 +19,9 @@ public partial class FormMain : Form {
     private DataLoader _dataLoader;
     private DataSet _dataSet;
     private FormViewCombinations _formViewCombinations;
-    private string _inputDirectory = null!;
-    private string _inputFile;
-    private string _outputFile = null!;
+    private string _inputDirectory = "";
+    private string _inputFile = "";
+    private string _outputFile = "";
     private GraphTemplate _template;
     private Thread _worker = null!;
 
@@ -84,7 +84,7 @@ public partial class FormMain : Form {
         if (tabControlMain.SelectedTab == tabTensile) {
             _worker = new Thread(() => {
                 DataPrepper.PrepTensile(_inputDirectory, checkRecursive.Checked, ProgressUpdate);
-                AbstractProcessor processor = new TensileProcessor("temp", radioSeparate.Checked);
+                AbstractProcessor processor = new TensileProcessor("temp", radioSeparate.Checked, radioZS2.Checked);
                 processor.SetHeadersActive(_optionsPanelTensile.GetCheckBoxes());
                 processor.Process(_outputFile);
                 Directory.Delete("temp", true);
@@ -97,7 +97,7 @@ public partial class FormMain : Form {
         else if (tabControlMain.SelectedTab == tabTear) {
             _worker = new Thread(() => {
                 DataPrepper.PrepTensile(_inputDirectory, checkRecursive.Checked, ProgressUpdate);
-                AbstractProcessor processor = new TearProcessor("temp", radioSeparate.Checked);
+                AbstractProcessor processor = new TearProcessor("temp", radioSeparate.Checked, radioZS2.Checked);
                 processor.SetHeadersActive(_optionsPanelTear.GetCheckBoxes());
                 processor.Process(_outputFile);
                 Directory.Delete("temp", true);
@@ -325,7 +325,7 @@ public partial class FormMain : Form {
                 var reader = new StreamReader(stream, Encoding.UTF8);
                 var json = reader.ReadToEnd();
                 var template = JsonConvert.DeserializeObject<GraphTemplate>(json);
-                _template = template;
+                _template = template ?? throw new InvalidOperationException();
                 comboGraphSheet.SelectedItem = template.SheetName;
                 txtGraphExportFilename.Text = ofd.SafeFileName?.Split(".")[0];
                 btnSelectCategories.Text = string.Join(", ", template.Categories);

@@ -8,7 +8,6 @@ public partial class FormViewCombinations : Form {
     private readonly TemplateUpdateCallback _callback;
     private readonly GraphTemplate _template;
     private HashSet<string> columns;
-    private bool firstEnter = true;
 
     public FormViewCombinations(GraphTemplate template, Dictionary<string, HashSet<string>> categoryOptions, TemplateUpdateCallback callback) {
         InitializeComponent();

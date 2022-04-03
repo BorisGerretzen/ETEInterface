@@ -1,4 +1,6 @@
-﻿namespace DataProcessing.DataProcessor;
+﻿using OfficeOpenXml;
+
+namespace DataProcessing.DataProcessor;
 
 public abstract class AbstractProcessor {
     protected readonly string Directory;
@@ -6,10 +8,12 @@ public abstract class AbstractProcessor {
     protected Dictionary<string, bool> _headersActive;
     protected string Filter = null!;
     protected List<string> Headers;
+    protected bool zs2;
 
-    protected AbstractProcessor(string directory, bool separate) {
+    protected AbstractProcessor(string directory, bool separate, bool zs2) {
         Directory = directory;
         Separate = separate;
+        zs2 = this.zs2;
     }
 
     /// <summary>

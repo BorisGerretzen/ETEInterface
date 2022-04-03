@@ -8,8 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPPlus" Version="5.8.6" />
+    <PackageReference Include="EPPlus" Version="5.8.8" />
     <PackageReference Include="morelinq" Version="3.3.2" />
+    <PackageReference Include="Zs2Decode" Version="2022.3.9.4" />
   </ItemGroup>
 
 </Project>

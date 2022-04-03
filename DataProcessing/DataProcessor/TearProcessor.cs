@@ -4,9 +4,9 @@ using DataProcessing.DataReader;
 namespace DataProcessing.DataProcessor;
 
 public class TearProcessor : AbstractProcessor {
-    public static TearProcessor Empty = new("", false);
+    public static TearProcessor Empty = new("", false, false);
 
-    public TearProcessor(string directory, bool separate) : base(directory, separate) {
+    public TearProcessor(string directory, bool separate, bool zs2) : base(directory, separate, false) {
         Filter = "*.xlsx";
         SetHeaders(new List<string> {
             "min",
@@ -18,30 +18,37 @@ public class TearProcessor : AbstractProcessor {
     }
 
     public override void Process(string outputFile) {
-        var dataStrain = new List<(string, List<double>)>();
+        var dataStress = new List<(string, List<double>)>();
         var removableColumns = RemoveFromResults();
 
         // Loop through all target files
         foreach (var file in System.IO.Directory.GetFiles(Directory, Filter)) {
             // Read and interpret data
-            AbstractDataReader reader = new DataReaderTensile(file, "Values Series");
-            AbstractDataInterpreter interpreter = new DataInterpreterTensileStrain(reader.ReadData());
+            AbstractDataReader reader;
+            if (zs2) {
+                reader = new DataReaderTensileZs2(file);
+            }
+            else {
+                reader = new DataReaderTensile(file, "Values Series");
+            }
+
+            AbstractDataInterpreter interpreter = new DataInterpreterTensileStress(reader.ReadData());
 
             // Remove unwanted columns from data
-            var dataRowStrain = interpreter.GetData();
-            removableColumns.ForEach(idx => dataRowStrain.RemoveAt(idx));
+            var dataRowStress = interpreter.GetData();
+            removableColumns.ForEach(idx => dataRowStress.RemoveAt(idx));
 
             // Store data
-            var rowStrain = (Path.GetFileNameWithoutExtension(file), dataRowStrain);
-            dataStrain.Add(rowStrain);
+            var rowStress = (Path.GetFileNameWithoutExtension(file), dataRowStress);
+            dataStress.Add(rowStress);
         }
 
         // Get headers and trim unwanted headers
         var headersTarget = GetHeaders();
-        if (_headersActive != null && _headersActive.Count > 0) headersTarget = _headersActive.Where(row => row.Value).Select(row => row.Key).ToList();
+        if (_headersActive is { Count: > 0 }) headersTarget = _headersActive.Where(row => row.Value).Select(row => row.Key).ToList();
 
         // Write data to file
-        var writer = new DataWriter(dataStrain, headersTarget);
-        writer.Write(outputFile, "TearStrain", Separate);
+        var writer = new DataWriter(dataStress, headersTarget);
+        writer.Write(outputFile, "TearStress", Separate);
     }
 }

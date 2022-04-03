@@ -6,7 +6,7 @@ public abstract class AbstractDataReader {
     protected string FileName;
     protected string SheetName;
 
-    protected AbstractDataReader(string fileName, string sheetName) {
+    protected AbstractDataReader(string fileName, string sheetName="") {
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
         FileName = fileName;
         SheetName = sheetName;
